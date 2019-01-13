@@ -11,15 +11,18 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 
 public class ControlScheme2 extends TimedRobot {
-    // We need to do the test to find the numbers.
-    WPI_TalonSRX frontR = new WPI_TalonSRX(deviceNumber);
-    WPI_TalonSRX frontL = new WPI_TalonSRX(deviceNumber);
-    WPI_TalonSRX backR = new WPI_TalonSRX(deviceNumber);
-    WPI_TalonSRX backL = new WPI_TalonSRX(deviceNumber);
+    WPI_TalonSRX fLeft = new WPI_TalonSRX(0);
+	WPI_TalonSRX bLeft = new WPI_TalonSRX(1);
+	WPI_TalonSRX fRight = new WPI_TalonSRX(2);
+	WPI_TalonSRX bRight = new WPI_TalonSRX(3);
 
     @Override
     public void teleopInit() {
 
+        //
+
+
+        
     }
 
 
