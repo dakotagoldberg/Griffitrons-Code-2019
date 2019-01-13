@@ -22,7 +22,7 @@ public class ControlScheme2 extends TimedRobot {
     @Override
     public void teleopInit() {
 
-        // Psuedo code
+        
         
 
 
