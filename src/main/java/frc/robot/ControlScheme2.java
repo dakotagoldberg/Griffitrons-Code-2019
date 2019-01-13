@@ -23,11 +23,16 @@ public class ControlScheme2 extends TimedRobot {
     public void teleopInit() {
 
         
-        
 
 
         
     }
+    
+    @Override
+    public void teleopPeriodic() {
+
+    }
+
 
 
 
