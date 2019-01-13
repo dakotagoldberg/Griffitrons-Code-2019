@@ -6,7 +6,6 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.Joystick;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
-import edu.wpi.first.wpilibj.drive.MecanumDrive;
 
 
 
@@ -31,10 +30,14 @@ public class ControlScheme2 extends TimedRobot {
     
     @Override
     public void teleopPeriodic() {
+<<<<<<< HEAD
         double angle = Math.atan(GamerStick.getX()/GamerStick.getY());
         double magnitude = Math.sqrt((GamerStick.getX()*GamerStick.getX())/(Math.pow(GamerStick.getY));
         
         
+=======
+
+>>>>>>> 5cd9d98998545d9a64d449e44048e20446b385c7
     }
 
 
