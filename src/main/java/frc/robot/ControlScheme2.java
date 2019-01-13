@@ -7,6 +7,9 @@ import edu.wpi.first.wpilibj.Talon;
 
 
 
+import com.ctre.phoenix.motorcontrol.can.*;
+import edu.wpi.first.wpilibj.*;
+import edu.wpi.first.wpilibj.drive.*;
 
 public class ControlScheme2 extends TimedRobot {
 
