@@ -22,7 +22,7 @@ public class ControlScheme2 extends TimedRobot {
     @Override
     public void teleopInit() {
 
-        
+        // Psuedo code
         
 
 
@@ -42,7 +42,9 @@ public class ControlScheme2 extends TimedRobot {
 
 
 
-
+    public void testPeriodic(){
+        System.out.println(GamerStick.getX());
+    }
 
 
 
