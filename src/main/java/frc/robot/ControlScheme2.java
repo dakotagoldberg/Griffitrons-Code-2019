@@ -15,18 +15,7 @@ public class ControlScheme2 extends TimedRobot {
     WPI_TalonSRX backR = new WPI_TalonSRX(deviceNumber);
     WPI_TalonSRX backL = new WPI_TalonSRX(deviceNumber);
 
-
-
-
-
-
-
-
-
-
-
-
-
+Joystick GamerStick = new Joystick(0);
 
 
 
