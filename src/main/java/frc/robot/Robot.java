@@ -17,6 +17,7 @@ package frc.robot;
 // import java.io.File;
 // import java.io.FileOutputStream;
 // import java.io.ObjectOutputStream;
+
 import java.io.Serializable;
 /**
  * Imports
@@ -59,13 +60,13 @@ public class Robot extends TimedRobot {
 	WPI_TalonSRX fRight = new WPI_TalonSRX(2);
 	WPI_TalonSRX bRight = new WPI_TalonSRX(3);
 
-	WPI_TalonSRX elev1 = new WPI_TalonSRX(4);
-	WPI_TalonSRX elev2 = new WPI_TalonSRX(5);
-	WPI_TalonSRX intake1 = new WPI_TalonSRX(6);
-	WPI_TalonSRX intake2 = new WPI_TalonSRX(7);
-	WPI_TalonSRX iRotate = new WPI_TalonSRX(8);
-	WPI_TalonSRX climber1 = new WPI_TalonSRX(9);
-	WPI_TalonSRX climber2 = new WPI_TalonSRX(10);
+	// WPI_TalonSRX elev1 = new WPI_TalonSRX(4);
+	// WPI_TalonSRX elev2 = new WPI_TalonSRX(5);
+	// WPI_TalonSRX intake1 = new WPI_TalonSRX(6);
+	// WPI_TalonSRX intake2 = new WPI_TalonSRX(7);
+	// WPI_TalonSRX iRotate = new WPI_TalonSRX(8);
+	// WPI_TalonSRX climber1 = new WPI_TalonSRX(9);
+	// WPI_TalonSRX climber2 = new WPI_TalonSRX(10);
 
 
 	/**
@@ -220,10 +221,10 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putNumber("frDrive", 0);
 		SmartDashboard.putNumber("blDrive", 0);
 		SmartDashboard.putNumber("brDrive", 0);
-		SmartDashboard.putNumber("intake", 0);
-		SmartDashboard.putNumber("intakerotate", 0);
-		SmartDashboard.putNumber("elevator", 0);
-		SmartDashboard.putNumber("climber", 0);
+		// SmartDashboard.putNumber("intake", 0);
+		// SmartDashboard.putNumber("intakerotate", 0);
+		// SmartDashboard.putNumber("elevator", 0);
+		// SmartDashboard.putNumber("climber", 0);
 
 		/**
 		 * 135 seconds is the total match time, so the timer variable is initialized to this.
@@ -236,14 +237,14 @@ public class Robot extends TimedRobot {
 		 * These variables keep track of the total voltage and current of the various motors.
 		 * This can be useful to tell if a motor is stalling.
 		 */
-		SmartDashboard.putNumber("voltage", RobotController.getBatteryVoltage());
-		SmartDashboard.putNumber("totaldraw", PowerJNI.getVinCurrent());
-		SmartDashboard.putNumber("drivedraw", fLeft.getOutputCurrent() + bLeft.getOutputCurrent() 
-		+ fRight.getOutputCurrent() + bRight.getOutputCurrent());
-		SmartDashboard.putNumber("intakedraw", intake1.getOutputCurrent() + intake2.getOutputCurrent());
-		SmartDashboard.putNumber("intakerotatedraw", iRotate.getOutputCurrent());
-		SmartDashboard.putNumber("elevatordraw", elev1.getOutputCurrent() + elev2.getOutputCurrent());
-		SmartDashboard.putNumber("climberdraw", climber1.getOutputCurrent() + climber2.getOutputCurrent());
+		// SmartDashboard.putNumber("voltage", RobotController.getBatteryVoltage());
+		// SmartDashboard.putNumber("totaldraw", PowerJNI.getVinCurrent());
+		// SmartDashboard.putNumber("drivedraw", fLeft.getOutputCurrent() + bLeft.getOutputCurrent() 
+		// + fRight.getOutputCurrent() + bRight.getOutputCurrent());
+		// SmartDashboard.putNumber("intakedraw", intake1.getOutputCurrent() + intake2.getOutputCurrent());
+		// SmartDashboard.putNumber("intakerotatedraw", iRotate.getOutputCurrent());
+		// SmartDashboard.putNumber("elevatordraw", elev1.getOutputCurrent() + elev2.getOutputCurrent());
+		// SmartDashboard.putNumber("climberdraw", climber1.getOutputCurrent() + climber2.getOutputCurrent());
 
 		/**
 		 * These are mostly here for fun. They are read from the gyro and are kind of cool.
@@ -316,11 +317,11 @@ public class Robot extends TimedRobot {
 		 * The closer loop ramp rate describes the time it should take for a motor to reach the desired speed.
 		 * This can be used to smooth the movement of a motor, particularly a powerful one like a 775.
 		 */
-		elev1.configClosedloopRamp(1.5, 0);
-		elev2.configClosedloopRamp(1.5, 0);
+		// elev1.configClosedloopRamp(1.5, 0);
+		// elev2.configClosedloopRamp(1.5, 0);
 
-		climber1.configClosedloopRamp(25, 0);
-		climber2.configClosedloopRamp(25, 0);
+		// climber1.configClosedloopRamp(25, 0);
+		// climber2.configClosedloopRamp(25, 0);
 	}
 
 	/**
@@ -382,10 +383,10 @@ public class Robot extends TimedRobot {
 		 * The rest of the motor values are sent to the dashboard only one of each type is sent for the simplicity
 		 * of the dashboard.
 		 */
-		SmartDashboard.putNumber("intake", intake1.get() * 100);
-		SmartDashboard.putNumber("intakerotate", iRotate.get() * 100);
-		SmartDashboard.putNumber("elevator", elev1.get() * 100);
-		SmartDashboard.putNumber("climber", climber1.get() * 100);
+		// SmartDashboard.putNumber("intake", intake1.get() * 100);
+		// SmartDashboard.putNumber("intakerotate", iRotate.get() * 100);
+		// SmartDashboard.putNumber("elevator", elev1.get() * 100);
+		// SmartDashboard.putNumber("climber", climber1.get() * 100);
 
 		/**
 		 * The current match time and auto status are sent to the dashboard for the countdown timer.
@@ -396,14 +397,14 @@ public class Robot extends TimedRobot {
 		/**
 		 * The current voltage and current of each motor is sent to the dashboard continuously.
 		 */
-		SmartDashboard.putNumber("voltage", RobotController.getBatteryVoltage());
-		SmartDashboard.putNumber("totaldraw", PowerJNI.getVinCurrent());
-		SmartDashboard.putNumber("drivedraw", fLeft.getOutputCurrent() + bLeft.getOutputCurrent() 
-		+ fRight.getOutputCurrent() + bRight.getOutputCurrent());
-		SmartDashboard.putNumber("intakedraw", intake1.getOutputCurrent() + intake2.getOutputCurrent());
-		SmartDashboard.putNumber("intakerotatedraw", iRotate.getOutputCurrent());
-		SmartDashboard.putNumber("elevatordraw", elev1.getOutputCurrent() + elev2.getOutputCurrent());
-		SmartDashboard.putNumber("climberdraw", climber1.getOutputCurrent() + climber2.getOutputCurrent());
+		// SmartDashboard.putNumber("voltage", RobotController.getBatteryVoltage());
+		// SmartDashboard.putNumber("totaldraw", PowerJNI.getVinCurrent());
+		// SmartDashboard.putNumber("drivedraw", fLeft.getOutputCurrent() + bLeft.getOutputCurrent() 
+		// + fRight.getOutputCurrent() + bRight.getOutputCurrent());
+		// SmartDashboard.putNumber("intakedraw", intake1.getOutputCurrent() + intake2.getOutputCurrent());
+		// SmartDashboard.putNumber("intakerotatedraw", iRotate.getOutputCurrent());
+		// SmartDashboard.putNumber("elevatordraw", elev1.getOutputCurrent() + elev2.getOutputCurrent());
+		// SmartDashboard.putNumber("climberdraw", climber1.getOutputCurrent() + climber2.getOutputCurrent());
 
 		/**
 		 * These bonus data pieces are also continuously updated on the smart dashboard.
@@ -485,7 +486,7 @@ public class Robot extends TimedRobot {
 			/**
 			 * The intake is always lowered when the match starts.
 			 */
-			lowerIntake();
+			// lowerIntake();
 			/**
 			 * Describes the auto possibilities when the robot starts to the left.
 			 */
@@ -503,10 +504,10 @@ public class Robot extends TimedRobot {
 					 */
 					if(scale1Left) {
 						autoDrive(14);
-						partialRaiseElev();
+						// partialRaiseElev();
 						autoRotate(90);
 						autoDrive(4);
-						fire();
+						// fire();
 						/**
 						 * Places on the left scale. Since this is pants, it will only do this if the switch is 
 						 * unavailable. It performs a similar operation, but the intake must be fully raised and
@@ -514,11 +515,11 @@ public class Robot extends TimedRobot {
 						 */
 					}else if(scale2Left) {
 						autoDrive(25);
-						raiseElev();
+						// raiseElev();
 						autoRotate(45);
 						aim();
 						autoDrive(5);
-						fire();
+						// fire();
 						/**
 						 * If neither the scale nor the switch is available, the robot will cross the baseline.
 						 */
@@ -533,17 +534,17 @@ public class Robot extends TimedRobot {
 					 */
 					if(scale2Left) {
 						autoDrive(25);
-						raiseElev();
+						// raiseElev();
 						autoRotate(45);
 						aim();
 						autoDrive(5);
-						fire();
+						// fire();
 					}else if(scale1Left) {
 						autoDrive(14);
-						partialRaiseElev();
+						// partialRaiseElev();
 						autoRotate(90);
 						autoDrive(4);
-						fire();
+						// fire();
 					}else {
 						autoDrive(14);
 					}
@@ -557,18 +558,18 @@ public class Robot extends TimedRobot {
 					autoDrive(5);
 					autoRotate(-90);
 					autoDrive(5.0);
-					partialRaiseElev();
+					// partialRaiseElev();
 					autoRotate(90);
 					autoDrive(7.5);
-					fire();
+					// fire();
 				}else {
 					autoDrive(5);
 					autoRotate(90);
 					autoDrive(5.0);
-					partialRaiseElev();
+					// partialRaiseElev();
 					autoRotate(-90);
 					autoDrive(7.5);
-					fire();
+					// fire();
 				}
 			}else {
 				/**
@@ -578,35 +579,35 @@ public class Robot extends TimedRobot {
 				if(pants) {
 					if(!scale1Left) {
 						autoDrive(14);
-						partialRaiseElev();
+						// partialRaiseElev();
 						autoRotate(-90);
 						autoDrive(4);
-						fire();
+						// fire();
 					}
 					else if(!scale2Left) {
 						autoDrive(25);
-						raiseElev();
+						// raiseElev();
 						autoRotate(-45);
 						aim();
 						autoDrive(5);
-						fire();
+						// fire();
 					}else {
 						autoDrive(14);
 					}
 				}else {
 					if(!scale2Left) {
 						autoDrive(25);
-						raiseElev();
+						// raiseElev();
 						autoRotate(-45);
 						aim();
 						autoDrive(5);
-						fire();
+						// fire();
 					}else if(!scale1Left) {
 						autoDrive(14);
-						partialRaiseElev();
+						// partialRaiseElev();
 						autoRotate(-90);
 						autoDrive(4);
-						fire();
+						// fire();
 					}else {
 						autoDrive(14);
 					}
@@ -719,6 +720,7 @@ public class Robot extends TimedRobot {
 			myRobot.drivePolar(mag * 0.3, theta, rotation * 0.2);
 		else
 			myRobot.drivePolar(mag, theta, rotation * 0.75);
+	}
 
 		/**
 		 * P2's triggers control the intake. Right for in, left for out. 
@@ -728,81 +730,81 @@ public class Robot extends TimedRobot {
 		 * A small deadzone is added as usual.
 		 * When the intake is not being moved, the motors very slightly stall inward to keep the cube in place.
 		 */
-		if(cubeController.getTriggerAxis(Hand.kRight) > 0.2 && intake1.getOutputCurrent() < INTAKE_CURRENT_LIMIT
-				&& intake2.getOutputCurrent() < INTAKE_CURRENT_LIMIT) {
-			intake1.set(cubeController.getTriggerAxis(Hand.kRight));
-			intake2.set(-cubeController.getTriggerAxis(Hand.kRight));
-		}else if(cubeController.getTriggerAxis(Hand.kLeft) > 0.2 && intake1.getOutputCurrent() < INTAKE_CURRENT_LIMIT
-				&& intake2.getOutputCurrent() < INTAKE_CURRENT_LIMIT) {
-			intake1.set(-cubeController.getTriggerAxis(Hand.kLeft));
-			intake2.set(cubeController.getTriggerAxis(Hand.kLeft));
-		}else if(cubeController.getAButton() && intake1.getOutputCurrent() < INTAKE_CURRENT_LIMIT
-				&& intake2.getOutputCurrent() < INTAKE_CURRENT_LIMIT) {
-			intake1.set(1.00);
-			intake2.set(-1.00);
-		}else if(cubeController.getBButton() && intake1.getOutputCurrent() < INTAKE_CURRENT_LIMIT
-				&& intake2.getOutputCurrent() < INTAKE_CURRENT_LIMIT) {
-			intake1.set(-1.00);
-			intake2.set(1.00);
-		}else {
-			intake1.set(0.0);
-			intake2.set(0.0);
-		}
+		// if(cubeController.getTriggerAxis(Hand.kRight) > 0.2 && intake1.getOutputCurrent() < INTAKE_CURRENT_LIMIT
+		// 		&& intake2.getOutputCurrent() < INTAKE_CURRENT_LIMIT) {
+		// 	intake1.set(cubeController.getTriggerAxis(Hand.kRight));
+		// 	intake2.set(-cubeController.getTriggerAxis(Hand.kRight));
+		// }else if(cubeController.getTriggerAxis(Hand.kLeft) > 0.2 && intake1.getOutputCurrent() < INTAKE_CURRENT_LIMIT
+		// 		&& intake2.getOutputCurrent() < INTAKE_CURRENT_LIMIT) {
+		// 	intake1.set(-cubeController.getTriggerAxis(Hand.kLeft));
+		// 	intake2.set(cubeController.getTriggerAxis(Hand.kLeft));
+		// }else if(cubeController.getAButton() && intake1.getOutputCurrent() < INTAKE_CURRENT_LIMIT
+		// 		&& intake2.getOutputCurrent() < INTAKE_CURRENT_LIMIT) {
+		// 	intake1.set(1.00);
+		// 	intake2.set(-1.00);
+		// }else if(cubeController.getBButton() && intake1.getOutputCurrent() < INTAKE_CURRENT_LIMIT
+		// 		&& intake2.getOutputCurrent() < INTAKE_CURRENT_LIMIT) {
+		// 	intake1.set(-1.00);
+		// 	intake2.set(1.00);
+		// }else {
+		// 	intake1.set(0.0);
+		// 	intake2.set(0.0);
+		// }
 
-		/**
-		 * P1's triggers control the elevator. 
-		 * Like always, a deadzone is added to the controls.
-		 * There is also a limit switch and a current limit that will prevent the elevator from breaking itself.
-		 * Finally, we slightly stall the motors when the elevator is inactive. This ensures it will not slip.
-		 */
-		if(driveController.getTriggerAxis(Hand.kRight) > 0.2 && upperLim.get() 
-				&& elev1.getOutputCurrent() < ELEV_CURRENT_LIMIT && elev2.getOutputCurrent() < ELEV_CURRENT_LIMIT) {
-			elev1.set(-driveController.getTriggerAxis(Hand.kRight));
-			elev2.set(-driveController.getTriggerAxis(Hand.kRight));
-		}else if(driveController.getTriggerAxis(Hand.kLeft) > 0.2 && lowerLim.get()
-				&& elev1.getOutputCurrent() < ELEV_CURRENT_LIMIT && elev2.getOutputCurrent() < ELEV_CURRENT_LIMIT) {
-			elev1.set(driveController.getTriggerAxis(Hand.kLeft) * 0.8);
-			elev2.set(driveController.getTriggerAxis(Hand.kLeft) * 0.8);
-		}else {
-			elev1.set(-0.05);
-			elev2.set(-0.05);
-		}
+		// /**
+		//  * P1's triggers control the elevator. 
+		//  * Like always, a deadzone is added to the controls.
+		//  * There is also a limit switch and a current limit that will prevent the elevator from breaking itself.
+		//  * Finally, we slightly stall the motors when the elevator is inactive. This ensures it will not slip.
+		//  */
+		// if(driveController.getTriggerAxis(Hand.kRight) > 0.2 && upperLim.get() 
+		// 		&& elev1.getOutputCurrent() < ELEV_CURRENT_LIMIT && elev2.getOutputCurrent() < ELEV_CURRENT_LIMIT) {
+		// 	elev1.set(-driveController.getTriggerAxis(Hand.kRight));
+		// 	elev2.set(-driveController.getTriggerAxis(Hand.kRight));
+		// }else if(driveController.getTriggerAxis(Hand.kLeft) > 0.2 && lowerLim.get()
+		// 		&& elev1.getOutputCurrent() < ELEV_CURRENT_LIMIT && elev2.getOutputCurrent() < ELEV_CURRENT_LIMIT) {
+		// 	elev1.set(driveController.getTriggerAxis(Hand.kLeft) * 0.8);
+		// 	elev2.set(driveController.getTriggerAxis(Hand.kLeft) * 0.8);
+		// }else {
+		// 	elev1.set(-0.05);
+		// 	elev2.set(-0.05);
+		// }
 
 		/**
 		 * P1's A Button controls the elevator.
 		 * Activates climber. Can only be turned on if in the last 30 seconds of the match to prevent accidental usage.
 		 * Like with the intake motors, a current limit is placed to prevent the motors from overheating.
 		 */
-		if(driveController.getAButton() && ds.getMatchTime() <= 30 
-				&& climber1.getOutputCurrent() <= CLIMB_CURRENT_LIMIT 
-				&& climber2.getOutputCurrent() <= CLIMB_CURRENT_LIMIT) {
-			climber1.set(-1.0);
-			climber2.set(-1.0);
-			driveController.setRumble(RumbleType.kLeftRumble, 1.0);
-			driveController.setRumble(RumbleType.kRightRumble, 1.0);
-			cubeController.setRumble(RumbleType.kLeftRumble, 1.0);
-			cubeController.setRumble(RumbleType.kRightRumble, 1.0);
-		}else {
-			climber1.set(0);
-			climber2.set(0);
-			driveController.setRumble(RumbleType.kLeftRumble, 0);
-			driveController.setRumble(RumbleType.kRightRumble, 0);
-			cubeController.setRumble(RumbleType.kLeftRumble, 0);
-			cubeController.setRumble(RumbleType.kRightRumble, 0);
-		}
+		// if(driveController.getAButton() && ds.getMatchTime() <= 30 
+		// 		&& climber1.getOutputCurrent() <= CLIMB_CURRENT_LIMIT 
+		// 		&& climber2.getOutputCurrent() <= CLIMB_CURRENT_LIMIT) {
+		// 	climber1.set(-1.0);
+		// 	climber2.set(-1.0);
+		// 	driveController.setRumble(RumbleType.kLeftRumble, 1.0);
+		// 	driveController.setRumble(RumbleType.kRightRumble, 1.0);
+		// 	cubeController.setRumble(RumbleType.kLeftRumble, 1.0);
+		// 	cubeController.setRumble(RumbleType.kRightRumble, 1.0);
+		// }else {
+		// 	climber1.set(0);
+		// 	climber2.set(0);
+		// 	driveController.setRumble(RumbleType.kLeftRumble, 0);
+		// 	driveController.setRumble(RumbleType.kRightRumble, 0);
+		// 	cubeController.setRumble(RumbleType.kLeftRumble, 0);
+		// 	cubeController.setRumble(RumbleType.kRightRumble, 0);
+		// }
 
 		/**
 		 * Pivots the intake mechanism using the D Pad.
 		 * Like with the intake, the pivot motor stalls slightly by default to keep the intake in place.
 		 * This sketchy solution can be replaced with PID if the time is available.
 		 */
-		if(cubeController.getPOV(0) != -1 && (cubeController.getPOV(0) >= 315 || cubeController.getPOV(0) <= 45))
-			iRotate.set(.5); 
-		else if(cubeController.getPOV(0) != -1 && cubeController.getPOV(0) >= 135 && cubeController.getPOV(0) <= 225)
-			iRotate.set(-.5);
-		else
-			iRotate.set(0.05);
-	}
+	// 	if(cubeController.getPOV(0) != -1 && (cubeController.getPOV(0) >= 315 || cubeController.getPOV(0) <= 45))
+	// 		iRotate.set(.5); 
+	// 	else if(cubeController.getPOV(0) != -1 && cubeController.getPOV(0) >= 135 && cubeController.getPOV(0) <= 225)
+	// 		iRotate.set(-.5);
+	// 	else
+	// 		iRotate.set(0.05);
+	// }
 
 	/**
 	 * Test Initialization- Runs when test mode is started.
@@ -1026,44 +1028,44 @@ public class Robot extends TimedRobot {
 	 * The method's contents are wrapped in a thread so this action will happen while the robot continues to drive
 	 * or rotate. This saves large amounts of time during autonomous. 
 	 */
-	public void raiseElev() {
-		new Thread(() -> {
-			/**
-			 * Despite the inclusion of a limit switch, a timer is used to make sure that the elevator does not 
-			 * continuously stall at the top. Knowing this team, adding electronic stops to compliment mechanical
-			 * ones is highly recommended whenever possible.
-			 */
-			Timer time = new Timer();
-			time.start();
-			time.reset();
+	// public void raiseElev() {
+	// 	new Thread(() -> {
+	// 		/**
+	// 		 * Despite the inclusion of a limit switch, a timer is used to make sure that the elevator does not 
+	// 		 * continuously stall at the top. Knowing this team, adding electronic stops to compliment mechanical
+	// 		 * ones is highly recommended whenever possible.
+	// 		 */
+	// 		Timer time = new Timer();
+	// 		time.start();
+	// 		time.reset();
 
-			/**
-			 * The elevator will continue to climb as long as the limit switch has not been hit and the timer has not
-			 * been running for 4.5 seconds or more. 
-			 */
-			while(upperLim.get() && time.get() < 4.5) {
-				/**
-				 * This current limit is once again checked to ensure the elevator does not stall and our motors do not
-				 * break. If this happens, they will immediately stop. 
-				 */
-				if(elev1.getOutputCurrent() < ELEV_CURRENT_LIMIT && elev2.getOutputCurrent() < ELEV_CURRENT_LIMIT) {
-					elev1.set(-0.4);
-					elev2.set(-0.4);
-				}else {
-					elev1.set(0.0);
-					elev2.set(0.0);
-				}
-			}
+	// 		/**
+	// 		 * The elevator will continue to climb as long as the limit switch has not been hit and the timer has not
+	// 		 * been running for 4.5 seconds or more. 
+	// 		 */
+	// 		// while(upperLim.get() && time.get() < 4.5) {
+	// 		// 	/**
+	// 		// 	 * This current limit is once again checked to ensure the elevator does not stall and our motors do not
+	// 		// 	 * break. If this happens, they will immediately stop. 
+	// 		// 	 */
+	// 		// 	if(elev1.getOutputCurrent() < ELEV_CURRENT_LIMIT && elev2.getOutputCurrent() < ELEV_CURRENT_LIMIT) {
+	// 		// 		elev1.set(-0.4);
+	// 		// 		elev2.set(-0.4);
+	// 		// 	}else {
+	// 		// 		elev1.set(0.0);
+	// 		// 		elev2.set(0.0);
+	// 		// 	}
+	// 		// }
 
-			/**
-			 * After the elevator has reached the top, it will slightly stall to prevent it from falling back down.
-			 * This stall is not enough to damage the motors, but will keep the elevator in place.
-			 */
-			elev1.set(-0.05);
-			elev2.set(-0.05);
-			time.stop();
-		}).start();
-	}
+	// 		/**
+	// 		 * After the elevator has reached the top, it will slightly stall to prevent it from falling back down.
+	// 		 * This stall is not enough to damage the motors, but will keep the elevator in place.
+	// 		 */
+	// 		elev1.set(-0.05);
+	// 		elev2.set(-0.05);
+	// 		time.stop();
+	// 	}).start();
+	// }
 
 	/**
 	 * Partial raise elevator functions almost identically to raise elevator, but it is only active for 1.5 seconds.
@@ -1071,25 +1073,25 @@ public class Robot extends TimedRobot {
 	 * raise the elevator fully.
 	 * It is also in a thread so it can act parallel with driving.
 	 */
-	public void partialRaiseElev() {
-		new Thread(() -> {
-			Timer time = new Timer();
-			time.start();
-			time.reset();
-			while(upperLim.get() && time.get() < 1.5) {
-				if(elev1.getOutputCurrent() < ELEV_CURRENT_LIMIT && elev2.getOutputCurrent() < ELEV_CURRENT_LIMIT) {
-					elev1.set(-0.4);
-					elev2.set(-0.4);
-				}else {
-					elev1.set(0.0);
-					elev2.set(0.0);
-				}
-			}
-			elev1.set(-0.05);
-			elev2.set(-0.05);
-			time.stop();
-		}).start();
-	}
+	// public void partialRaiseElev() {
+	// 	new Thread(() -> {
+	// 		Timer time = new Timer();
+	// 		time.start();
+	// 		time.reset();
+	// 		while(upperLim.get() && time.get() < 1.5) {
+	// 			if(elev1.getOutputCurrent() < ELEV_CURRENT_LIMIT && elev2.getOutputCurrent() < ELEV_CURRENT_LIMIT) {
+	// 				elev1.set(-0.4);
+	// 				elev2.set(-0.4);
+	// 			}else {
+	// 				elev1.set(0.0);
+	// 				elev2.set(0.0);
+	// 			}
+	// 		}
+	// 		elev1.set(-0.05);
+	// 		elev2.set(-0.05);
+	// 		time.stop();
+	// 	}).start();
+	// }
 
 	/**
 	 * This method can be called during autonomous and once again functions similarly to the other elevator methods.
@@ -1100,25 +1102,25 @@ public class Robot extends TimedRobot {
 	 * problems during the season, it would probably be wise to lower the speed and raise the time allotted for 
 	 * the lowering process.
 	 */
-	public void lowerElev() {
-		new Thread(() -> {
-			Timer time = new Timer();
-			time.start();
-			time.reset();
-			while(lowerLim.get() && time.get() < 1.9) {
-				if(elev1.getOutputCurrent() < ELEV_CURRENT_LIMIT && elev2.getOutputCurrent() < ELEV_CURRENT_LIMIT) {
-					elev1.set(0.6);
-					elev2.set(0.6);
-				}else {
-					elev1.set(0.0);
-					elev2.set(0.0);
-				}
-			}
-			elev1.set(-0.05);
-			elev2.set(-0.05);
-			time.stop();
-		}).start();
-	}
+	// public void lowerElev() {
+	// 	new Thread(() -> {
+	// 		Timer time = new Timer();
+	// 		time.start();
+	// 		time.reset();
+	// 		while(lowerLim.get() && time.get() < 1.9) {
+	// 			if(elev1.getOutputCurrent() < ELEV_CURRENT_LIMIT && elev2.getOutputCurrent() < ELEV_CURRENT_LIMIT) {
+	// 				elev1.set(0.6);
+	// 				elev2.set(0.6);
+	// 			}else {
+	// 				elev1.set(0.0);
+	// 				elev2.set(0.0);
+	// 			}
+	// 		}
+	// 		elev1.set(-0.05);
+	// 		elev2.set(-0.05);
+	// 		time.stop();
+	// 	}).start();
+	// }
 
 	/**
 	 * This method is called during autonomous, and lowers the intake at the start of the match.
@@ -1128,18 +1130,18 @@ public class Robot extends TimedRobot {
 	 * Like with many other methods, it uses a thread so it can run parallel to driving, and stalls slightly to hold
 	 * its position.
 	 */
-	public void lowerIntake() {
-		new Thread(() -> {
-			Timer time = new Timer();
-			time.start();
-			time.reset();
-			while(time.get() < .8) {
-				iRotate.set(-0.5);
-			}
-			iRotate.set(0.05);
-			time.stop();
-		}).start();
-	}
+	// public void lowerIntake() {
+	// 	new Thread(() -> {
+	// 		Timer time = new Timer();
+	// 		time.start();
+	// 		time.reset();
+	// 		while(time.get() < .8) {
+	// 			iRotate.set(-0.5);
+	// 		}
+	// 		iRotate.set(0.05);
+	// 		time.stop();
+	// 	}).start();
+	// }
 
 	/**
 	 * The aim method brings the intake back up half way. This is done so a cube can be placed on the scale in 
@@ -1154,9 +1156,9 @@ public class Robot extends TimedRobot {
 			time.start();
 			time.reset();
 			while(time.get() < 1.0) {
-				iRotate.set(0.5);
+				// iRotate.set(0.5);
 			}
-			iRotate.set(0.05);
+			// iRotate.set(0.05);
 			time.stop();
 		}).start();
 	}
@@ -1169,22 +1171,22 @@ public class Robot extends TimedRobot {
 	 * has to. A current limit is still used in case a cube gets stuck and the motors begin to stall. It will prevent
 	 * the possible destruction of the motors. The intake is not stalled at the end because why would you?
 	 */
-	public void fire() {
-		Timer time = new Timer();
-		time.start();
-		time.reset();
-		while(time.get() < 1.5) {
-			if(intake1.getOutputCurrent() < INTAKE_CURRENT_LIMIT && intake2.getOutputCurrent() < INTAKE_CURRENT_LIMIT) {
-				intake1.set(-1.0);
-				intake2.set(1.0);
-			}else {
-				intake1.set(0.0);
-				intake2.set(0.0);
-			}
-		}
-		intake1.set(0.0);
-		intake2.set(0.0);
-	}
+	// public void fire() {
+	// 	Timer time = new Timer();
+	// 	time.start();
+	// 	time.reset();
+	// 	while(time.get() < 1.5) {
+	// 		if(intake1.getOutputCurrent() < INTAKE_CURRENT_LIMIT && intake2.getOutputCurrent() < INTAKE_CURRENT_LIMIT) {
+	// 			intake1.set(-1.0);
+	// 			intake2.set(1.0);
+	// 		}else {
+	// 			intake1.set(0.0);
+	// 			intake2.set(0.0);
+	// 		}
+	// 	}
+	// 	intake1.set(0.0);
+	// 	intake2.set(0.0);
+	// }
 
 	/**
 	 * 
