@@ -26,18 +26,7 @@ public class ControlScheme2 extends TimedRobot {
         
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
+Joystick GamerStick = new Joystick(0);
 
 
 
