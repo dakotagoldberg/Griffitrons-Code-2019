@@ -2,14 +2,11 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 
 import edu.wpi.first.wpilibj.Joystick;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import edu.wpi.first.wpilibj.Talon;
 
 
 
 
-import com.ctre.phoenix.motorcontrol.can.*;
-import edu.wpi.first.wpilibj.*;
-import edu.wpi.first.wpilibj.drive.*;
 
 public class ControlScheme2 extends TimedRobot {
     // We need to do the test to find the numbers.
@@ -36,18 +33,19 @@ public class ControlScheme2 extends TimedRobot {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
