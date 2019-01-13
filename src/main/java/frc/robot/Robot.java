@@ -48,7 +48,7 @@ import com.kauailabs.navx.frc.AHRS;
  */
 
 public class Robot extends TimedRobot {
-	String notExcitingBut = "IT WORKED!!!!";
+	
 	/**
 	 * WPI_TalonSRX are CANTalons that are accepted by the MecanumDrive method.
 	 * The Talon IDs match the ones found at RIO configuration (http://roborio-1661-frc.local)
