@@ -49,6 +49,7 @@ public class ControlScheme2 extends TimedRobot {
 
     public void testPeriodic(){
         System.out.println(GamerStick.getX());
+        System.out.println(GamerStick.getY());
     }
 
 
