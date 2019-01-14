@@ -35,9 +35,7 @@ public class ControlScheme2 extends TimedRobot {
         double magnitude = Math.sqrt((GamerStick.getX()*GamerStick.getX())/(Math.pow(GamerStick.getY));
         
         
-=======
 
->>>>>>> 5cd9d98998545d9a64d449e44048e20446b385c7
     }
 
 
