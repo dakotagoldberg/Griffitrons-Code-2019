@@ -7,8 +7,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 
-
-
+// @authors: Spencer Collins, Dakota Goldberg, and Leonard Kakinuma
 
 public class ControlScheme2 extends TimedRobot {
    
@@ -54,8 +53,7 @@ public class ControlScheme2 extends TimedRobot {
 
 
     public void testPeriodic(){
-        System.out.println("X: " + GamerStick.getX());
-        System.out.println("Y: " + GamerStick.getY());
+        System.out.println(GamerStick.getX());
     }
 
 
