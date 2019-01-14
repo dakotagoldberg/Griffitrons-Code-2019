@@ -43,10 +43,10 @@ public class ControlScheme2 extends TimedRobot {
         if(magnitude > 0.1){
             if(y >= 0){
                 angle =+ 90;
-                
+                phil.drivePolar(magnitude, angle, 0.75);
             } else{
                 angle -= 90;
-
+                phil.drivePolar(magnitude, angle, 0.75);
             }
         }
         
