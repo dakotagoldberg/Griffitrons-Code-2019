@@ -23,7 +23,8 @@ public class ControlScheme2 extends TimedRobot {
     
     @Override
     public void teleopInit() {
-
+        fRight.setInverted(true);
+        bRight.setInverted(true);
         
 
 
