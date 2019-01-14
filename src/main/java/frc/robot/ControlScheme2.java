@@ -10,6 +10,8 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 // @authors: Spencer Collins, Dakota Goldberg, and Leonard Kakinuma
 
+
+
 public class ControlScheme2 extends TimedRobot {
    
     WPI_TalonSRX fLeft = new WPI_TalonSRX(0);
@@ -30,6 +32,9 @@ public class ControlScheme2 extends TimedRobot {
     
     @Override
     public void teleopPeriodic() {
+        /**Math to obtain the angle from the joystick location
+         *  Then we grab the hypoteneuse for the magnitude.
+         */
         double x = GamerStick.getX();
         double y = GamerStick.getY();
         double angle = Math.atan(y/x);
@@ -41,6 +46,7 @@ public class ControlScheme2 extends TimedRobot {
                 
             } else{
                 angle -= 90;
+
             }
         }
         
@@ -63,7 +69,8 @@ public class ControlScheme2 extends TimedRobot {
 
 
     public void testPeriodic(){
-        System.out.println(GamerStick.getX());
+        System.out.println("X: " + GamerStick.getX());
+        System.out.println("Y: " + GamerStick.getY());
     }
 
 
