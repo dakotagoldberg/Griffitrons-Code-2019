@@ -1,5 +1,6 @@
 package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.drive.MecanumDrive;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
@@ -15,7 +16,7 @@ public class ControlScheme2 extends TimedRobot {
 	WPI_TalonSRX bLeft = new WPI_TalonSRX(1);
 	WPI_TalonSRX fRight = new WPI_TalonSRX(2);
 	WPI_TalonSRX bRight = new WPI_TalonSRX(3);
-    
+    MecanumDrive phil = new MecanumDrive(fLeft, bLeft, fRight, bRight);
     Joystick GamerStick = new Joystick(0);
     
     @Override
@@ -32,7 +33,16 @@ public class ControlScheme2 extends TimedRobot {
         double x = GamerStick.getX();
         double y = GamerStick.getY();
         double angle = Math.atan(y/x);
-        double magnitude = Math.sqrt((y*y)+(x*x));
+        double magnitude = Math.sqrt((y*y)+(x*x))/Math.sqrt(2);
+
+        if(magnitude > 0.1){
+            if(y >= 0){
+                angle =+ 90;
+                
+            } else{
+                angle -= 90;
+            }
+        }
         
         
 
