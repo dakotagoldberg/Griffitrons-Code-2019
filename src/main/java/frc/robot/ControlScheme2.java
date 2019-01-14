@@ -30,9 +30,10 @@ public class ControlScheme2 extends TimedRobot {
     
     @Override
     public void teleopPeriodic() {
-<<<<<<< HEAD
-        double angle = Math.atan(GamerStick.getX()/GamerStick.getY());
-        double magnitude = Math.sqrt((GamerStick.getX()*GamerStick.getX())/(Math.pow(GamerStick.getY));
+        double x = GamerStick.getX();
+        double y = GamerStick.getY();
+        double angle = Math.atan(y/x);
+        double magnitude = Math.sqrt((y*y)+(x*x));
         
         
 
