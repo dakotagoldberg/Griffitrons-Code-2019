@@ -47,7 +47,7 @@ public class ControlScheme2 extends TimedRobot {
         }else{
         if(magnitude > 0.1){
             //checks  if its forward or backwards.
-            if(y >= 0){
+            if(y <= 0){
                 angle =+ 90;
                 phil.drivePolar(magnitude, angle, 0.75);
             } else{
