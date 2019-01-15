@@ -40,8 +40,9 @@ public class ControlScheme2 extends TimedRobot {
         double y = GamerStick.getY();
         double angle = Math.atan(y/x);
         double magnitude = Math.sqrt((y*y)+(x*x))/Math.sqrt(2);
-
+        //creates a threshhold so it doesn't move unintentionally
         if(magnitude > 0.1){
+            //checks  if its forward or backwards.
             if(y >= 0){
                 angle =+ 90;
                 phil.drivePolar(magnitude, angle, 0.75);
