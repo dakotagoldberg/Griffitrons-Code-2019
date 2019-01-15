@@ -39,11 +39,11 @@ public class ControlScheme2 extends TimedRobot {
         double x = GamerStick.getX();
         double y = GamerStick.getY();
         double angle = Math.atan(y/x);
-        double magnitude = Math.sqrt((y*y)+(x*x))/Math.sqrt(2);
+        double magnitude = Math.sqrt((y*y)+(x*x))/(2*Math.sqrt(2));
         //creates a threshhold so it doesn't move unintentionally
         if(GamerStick.getTrigger()){
             //RAMMING SPEED!!
-            phil.drivePolar(1, 90, 1);
+            phil.drivePolar(0.5, 90, 1);
         }else{
         if(magnitude > 0.1){
             //checks  if its forward or backwards.
