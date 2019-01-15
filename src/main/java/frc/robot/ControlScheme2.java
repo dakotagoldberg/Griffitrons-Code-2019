@@ -41,7 +41,7 @@ public class ControlScheme2 extends TimedRobot {
         double angle = Math.atan(y/x);
         double magnitude = Math.sqrt((y*y)+(x*x))/Math.sqrt(2);
         //creates a threshhold so it doesn't move unintentionally
-        if(GamerStick.getTriggerPressed()){
+        if(GamerStick.getTrigger()){
             //RAMMING SPEED!!
             phil.drivePolar(1, 90, 1);
         }else{
