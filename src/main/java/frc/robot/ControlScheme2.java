@@ -55,7 +55,7 @@ public class ControlScheme2 extends TimedRobot {
             } else{
 
                angle -= 90;
-               phil.drivePolar(magnitude, angle, 0.75);
+               phil.drivePolar(magnitude, angle, -0.75);
                 //phil.driveCartesian(-y, x, 0);
             }
         }
