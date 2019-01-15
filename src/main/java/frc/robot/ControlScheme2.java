@@ -51,8 +51,8 @@ public class ControlScheme2 extends TimedRobot {
                 angle =+ 90;
                 phil.drivePolar(magnitude, angle, 0.75);
             } else{
-                angle -= 90;
-                phil.drivePolar(magnitude, angle, 0.75);
+                angle += 90;
+                phil.drivePolar(-magnitude, angle, 0.75);
             }
         }
     }
