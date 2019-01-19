@@ -21,7 +21,11 @@ public class ControlScheme2 extends TimedRobot {
     
     MecanumDrive phil = new MecanumDrive(fLeft, bLeft, fRight, bRight);
     Joystick GamerStick = new Joystick(0);
-    
+    double x;
+    double y;
+    double twist;
+    double throttle;
+    double magnitude;
     @Override
     public void teleopInit() {
         
@@ -36,7 +40,7 @@ public class ControlScheme2 extends TimedRobot {
         /**Math to obtain the angle from the joystick location
          *  Then we grab the hypoteneuse for the magnitude.
          */
-        double x = GamerStick.getX();
+        double x  = GamerStick.getX();
         double y = -GamerStick.getY();
         double twist = GamerStick.getRawAxis(6);
         double throttle = GamerStick.getZ();
@@ -73,9 +77,12 @@ public class ControlScheme2 extends TimedRobot {
 
 
     public void testPeriodic(){
-        System.out.println("X: " + GamerStick.getX());
-        System.out.println("Y: " + GamerStick.getY());
-        System.out.println("");
+        System.out.println("____________________________________________");
+        System.out.println("X: " + x + " \nRaw X: " + GamerStick.getX());
+        System.out.println("Y: " + y + " \nRaw Y: " + GamerStick.getY());
+        System.out.println("Z: " + throttle);
+        System.out.println("Mag: " + magnitude);
+        
     }
 
 
