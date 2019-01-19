@@ -26,6 +26,7 @@ public class ControlScheme2 extends TimedRobot {
     double twist;
     double throttle;
     double magnitude;
+    boolean left, right;
     @Override
     public void teleopInit() {
         
@@ -40,8 +41,11 @@ public class ControlScheme2 extends TimedRobot {
         /**Math to obtain the angle from the joystick location
          *  Then we grab the hypoteneuse for the magnitude.
          */
+         left = GamerStick.getRawButton(3);
+         right = GamerStick.getRawButton(4);
          x  = GamerStick.getX();
          y = -GamerStick.getY();
+         
      //   double twist = GamerStick.getRawAxis(6);
          throttle = GamerStick.getZ();
 
@@ -52,6 +56,12 @@ public class ControlScheme2 extends TimedRobot {
        //  twist *= (throttle*3)/4;
       //  double angle = Math.atan(x/y);
         double magnitude = Math.sqrt((y*y)+(x*x));
+        if(left && !right){
+            phil.driveCartesian(0,0,0.3);
+        } 
+        if(right && !left){
+            phil.driveCartesian(0,0,-0.3);
+        }
         if(magnitude > 0.05){
             
             //   phil.drivePolar(magnitude,angle,0.75);
@@ -87,6 +97,8 @@ public class ControlScheme2 extends TimedRobot {
         x *= (throttle*3)/4;
         y *= (throttle*3)/4;
          twist *= (throttle*3)/4;
+         left = GamerStick.getRawButton(3);
+         right = GamerStick.getRawButton(4);
       //  double angle = Math.atan(x/y);
         double magnitude = Math.sqrt((y*y)+(x*x));
         System.out.println("____________________________________________");
@@ -94,6 +106,7 @@ public class ControlScheme2 extends TimedRobot {
         System.out.println("Y: " + y + " \nRaw Y: " + GamerStick.getY());
         System.out.println("Z: " + throttle);
         System.out.println("Mag: " + magnitude);
+        System.out.println("Left: " + left + " Right: " + right);
         
     }
 
