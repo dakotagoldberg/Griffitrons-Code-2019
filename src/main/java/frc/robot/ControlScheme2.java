@@ -77,6 +77,18 @@ public class ControlScheme2 extends TimedRobot {
 
 
     public void testPeriodic(){
+        double x  = GamerStick.getX();
+        double y = -GamerStick.getY();
+        double twist = GamerStick.getRawAxis(6);
+        double throttle = GamerStick.getZ();
+
+        throttle = Math.abs(throttle);
+
+        x *= (throttle*3)/4;
+        y *= (throttle*3)/4;
+         twist *= (throttle*3)/4;
+      //  double angle = Math.atan(x/y);
+        double magnitude = Math.sqrt((y*y)+(x*x));
         System.out.println("____________________________________________");
         System.out.println("X: " + x + " \nRaw X: " + GamerStick.getX());
         System.out.println("Y: " + y + " \nRaw Y: " + GamerStick.getY());
