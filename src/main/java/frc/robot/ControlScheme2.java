@@ -53,10 +53,10 @@ public class ControlScheme2 extends TimedRobot {
       //  double angle = Math.atan(x/y);
         double magnitude = Math.sqrt((y*y)+(x*x));
         if(magnitude > 0.1){
-            if(y<0){
+            
             //   phil.drivePolar(magnitude,angle,0.75);
             phil.driveCartesian(x,y,0);
-            }
+            
      }
 
     }
