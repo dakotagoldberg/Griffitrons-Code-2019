@@ -45,7 +45,7 @@ public class ControlScheme2 extends TimedRobot {
      //   double twist = GamerStick.getRawAxis(6);
          throttle = GamerStick.getZ();
 
-        throttle = (throttle + 1)/2;
+        throttle = (-throttle + 1)/2;
 
         x *= (throttle*3)/4;
         y *= (throttle*3)/4;
