@@ -40,16 +40,16 @@ public class ControlScheme2 extends TimedRobot {
         /**Math to obtain the angle from the joystick location
          *  Then we grab the hypoteneuse for the magnitude.
          */
-        double x  = GamerStick.getX();
-        double y = -GamerStick.getY();
-        double twist = GamerStick.getRawAxis(6);
-        double throttle = GamerStick.getZ();
+         x  = GamerStick.getX();
+         y = -GamerStick.getY();
+     //   double twist = GamerStick.getRawAxis(6);
+         throttle = GamerStick.getZ();
 
         throttle = Math.abs(throttle);
 
         x *= (throttle*3)/4;
         y *= (throttle*3)/4;
-         twist *= (throttle*3)/4;
+       //  twist *= (throttle*3)/4;
       //  double angle = Math.atan(x/y);
         double magnitude = Math.sqrt((y*y)+(x*x));
         if(magnitude > 0.1){
@@ -77,10 +77,10 @@ public class ControlScheme2 extends TimedRobot {
 
 
     public void testPeriodic(){
-        double x  = GamerStick.getX();
-        double y = -GamerStick.getY();
-        double twist = GamerStick.getRawAxis(6);
-        double throttle = GamerStick.getZ();
+         x  = GamerStick.getX();
+         y = -GamerStick.getY();
+         twist = GamerStick.getRawAxis(6);
+         throttle = GamerStick.getZ();
 
         throttle = Math.abs(throttle);
 
