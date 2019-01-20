@@ -41,8 +41,8 @@ public class ControlScheme2 extends TimedRobot {
         /**Math to obtain the angle from the joystick location
          *  Then we grab the hypoteneuse for the magnitude.
          */
-         left = GamerStick.getRawButton(3);
-         right = GamerStick.getRawButton(4);
+         left = GamerStick.getRawButton(4);
+         right = GamerStick.getRawButton(5);
          x  = GamerStick.getX();
          y = -GamerStick.getY();
          
@@ -57,10 +57,10 @@ public class ControlScheme2 extends TimedRobot {
       //  double angle = Math.atan(x/y);
         double magnitude = Math.sqrt((y*y)+(x*x));
         if(left && !right){
-            phil.driveCartesian(0,0,0.3);
+            phil.driveCartesian(0,0,-0.3);
         } 
         if(right && !left){
-            phil.driveCartesian(0,0,-0.3);
+            phil.driveCartesian(0,0,0.3);
         }
         if(magnitude > 0.05){
             
@@ -97,8 +97,8 @@ public class ControlScheme2 extends TimedRobot {
         x *= (throttle*3)/4;
         y *= (throttle*3)/4;
          twist *= (throttle*3)/4;
-         left = GamerStick.getRawButton(3);
-         right = GamerStick.getRawButton(4);
+         left = GamerStick.getRawButton(4);
+         right = GamerStick.getRawButton(5);
       //  double angle = Math.atan(x/y);
         double magnitude = Math.sqrt((y*y)+(x*x));
         System.out.println("____________________________________________");
