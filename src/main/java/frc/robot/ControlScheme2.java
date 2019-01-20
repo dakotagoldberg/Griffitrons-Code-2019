@@ -10,8 +10,6 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 // @authors: Spencer Collins, Dakota Goldberg, and Leonard Kakinuma
 
-
-
 public class ControlScheme2 extends TimedRobot {
    
     WPI_TalonSRX fLeft = new WPI_TalonSRX(0);
@@ -21,85 +19,57 @@ public class ControlScheme2 extends TimedRobot {
     
     MecanumDrive phil = new MecanumDrive(fLeft, bLeft, fRight, bRight);
     Joystick GamerStick = new Joystick(0);
-    double x;
-    double y;
-    double twist;
-    double throttle;
-    double magnitude;
-    boolean left, right;
+    //all the variables.
+    double x,y,throttle,magnitude;
+    boolean left, right,ram;
     @Override
     public void teleopInit() {
-        
-
-
-
-        
+         
     }
     
     @Override
     public void teleopPeriodic() {
-        /**Math to obtain the angle from the joystick location
-         *  Then we grab the hypoteneuse for the magnitude.
-         */
-         left = GamerStick.getRawButton(4);
-         right = GamerStick.getRawButton(5);
-         x  = GamerStick.getX();
-         y = -GamerStick.getY();
-         
-     //   double twist = GamerStick.getRawAxis(6);
-         throttle = GamerStick.getZ();
-
+        //gets the button inputs and assignes them, y inverted
+        ram = GamerStick.getRawButton(1);
+        left = GamerStick.getRawButton(4);
+        right = GamerStick.getRawButton(5);
+        x  = GamerStick.getX();
+        y = -GamerStick.getY();
+        throttle = GamerStick.getZ();
+        //math
         throttle = (-throttle + 1)/2;
-
         x *= (throttle*3)/4;
         y *= (throttle*3)/4;
-       //  twist *= (throttle*3)/4;
-      //  double angle = Math.atan(x/y);
-        double magnitude = Math.sqrt((y*y)+(x*x));
+        magnitude = Math.sqrt((y*y)+(x*x));
+        //checks for left right buttons
         if(left && !right){
             phil.driveCartesian(0,0,-0.3);
         } 
         if(right && !left){
             phil.driveCartesian(0,0,0.3);
         }
+        //dead zone
         if(magnitude > 0.05){
-            
-            //   phil.drivePolar(magnitude,angle,0.75);
             phil.driveCartesian(x,y,0);
-            
      }
 
     }
    
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public void testPeriodic(){
          x  = GamerStick.getX();
          y = -GamerStick.getY();
-         twist = GamerStick.getRawAxis(6);
+        
          throttle = GamerStick.getZ();
 
         throttle = Math.abs(throttle);
 
         x *= (throttle*3)/4;
         y *= (throttle*3)/4;
-         twist *= (throttle*3)/4;
+        
          left = GamerStick.getRawButton(4);
          right = GamerStick.getRawButton(5);
-      //  double angle = Math.atan(x/y);
+         
         double magnitude = Math.sqrt((y*y)+(x*x));
         System.out.println("____________________________________________");
         System.out.println("X: " + x + " \nRaw X: " + GamerStick.getX());
@@ -109,11 +79,6 @@ public class ControlScheme2 extends TimedRobot {
         System.out.println("Left: " + left + " Right: " + right);
         
     }
-
-
-
-
-
 
 
 
