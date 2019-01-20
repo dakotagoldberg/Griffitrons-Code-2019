@@ -31,12 +31,12 @@ public class TestCoastDrive extends TimedRobot{
             speedR = -x;
         } else {
             if(x > 0){
-              if(x < 0.05 && x > -0.05);
+              if(x < 0.05 && x > -0.05)
                 x = 0;
               speedL = y;
               speedR = y * (1-(x*3/4));
             }else{
-                if(x < 0.05 && x > -0.05);
+                if(x < 0.05 && x > -0.05)
                     x = 0;
                 speedR = y;
                 speedL = y * (1-(Math.abs(x)*3/4));

@@ -22,6 +22,9 @@ public class ControlScheme2 extends TimedRobot {
     //all the variables.
     double x,y,throttle,magnitude;
     boolean left, right,ram;
+
+    //test variables
+    int gX = 4,gY = 4;
     @Override
     public void teleopInit() {
          
@@ -54,7 +57,10 @@ public class ControlScheme2 extends TimedRobot {
      }
 
     }
-   
+  //  public void testInit(){
+   //     gX = 4;
+  //      gY = 4;
+   // }
 
     public void testPeriodic(){
         if(GamerStick.getRawButton(6)){
@@ -72,14 +78,46 @@ public class ControlScheme2 extends TimedRobot {
          right = GamerStick.getRawButton(5);
          
         double magnitude = Math.sqrt((y*y)+(x*x));
-        System.out.println("-------------------------------------------------------------------------------------------");
+        System.out.println("----------------------------------------------------------58");
         System.out.println("X: " + x + " \nRaw X: " + GamerStick.getX());
         System.out.println("Y: " + y + " \nRaw Y: " + GamerStick.getY());
         System.out.println("Z: " + throttle);
         System.out.println("Mag: " + magnitude);
         System.out.println("Left: " + left + " Right: " + right);
         } else {
-            
+        //don't worry 'bout this
+        if(gX < 1)
+            gX = 1;
+        if(gX > 8)
+            gX = 8;
+        if(gY < 1)
+            gY = 1;
+        if(gY < 8)
+            gY = 8;
+        
+        if(GamerStick.getRawButton(3))
+            gY -= 1;
+        if(GamerStick.getRawButton(2))
+            gY += 1;
+        if(GamerStick.getRawButton(4))
+            gX -= 1;
+        if(GamerStick.getRawButton(5))
+            gX += 1;
+        
+            for(int y = 0; y < 10; y++){
+                for(int x = 0; x < 10; x++){
+                    if(y == 0 || y == 9){
+                        System.out.print('-');
+                    } else if(x == 0 || x == 9){
+                        System.out.print('|');
+                    }else if(x== gX && y == gY){
+                        System.out.print('0');
+                    } else {
+                        System.out.print('/');
+                    }
+                }
+                System.out.println();
+            }
         }
     }
 
