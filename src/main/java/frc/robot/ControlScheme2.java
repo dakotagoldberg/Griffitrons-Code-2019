@@ -57,10 +57,11 @@ public class ControlScheme2 extends TimedRobot {
    
 
     public void testPeriodic(){
-         x  = GamerStick.getX();
-         y = -GamerStick.getY();
+        if(GamerStick.getRawButton(6)){
+        x  = GamerStick.getX();
+        y = -GamerStick.getY();
         
-         throttle = GamerStick.getZ();
+        throttle = GamerStick.getZ();
 
         throttle = Math.abs(throttle);
 
@@ -71,13 +72,15 @@ public class ControlScheme2 extends TimedRobot {
          right = GamerStick.getRawButton(5);
          
         double magnitude = Math.sqrt((y*y)+(x*x));
-        System.out.println("____________________________________________");
+        System.out.println("-------------------------------------------------------------------------------------------");
         System.out.println("X: " + x + " \nRaw X: " + GamerStick.getX());
         System.out.println("Y: " + y + " \nRaw Y: " + GamerStick.getY());
         System.out.println("Z: " + throttle);
         System.out.println("Mag: " + magnitude);
         System.out.println("Left: " + left + " Right: " + right);
-        
+        } else {
+            
+        }
     }
 
 
