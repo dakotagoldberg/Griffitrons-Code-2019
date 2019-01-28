@@ -3,20 +3,29 @@ import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-
+import com.ctre.phoenix.motorcontrol.can.*;
 public class TestCoastDrive extends TimedRobot{
     double x,y,speedL,speedR;
     
     WPI_TalonSRX fLeft = new WPI_TalonSRX(0);
-	WPI_TalonSRX bLeft = new WPI_TalonSRX(1);
-	WPI_TalonSRX fRight = new WPI_TalonSRX(2);
-    WPI_TalonSRX bRight = new WPI_TalonSRX(3);
+    WPI_TalonSRX mLeft = new WPI_TalonSRX(1);
+    WPI_TalonSRX bLeft = new WPI_TalonSRX(2);
+	WPI_TalonSRX fRight = new WPI_TalonSRX(3);
+    WPI_TalonSRX mRight = new WPI_TalonSRX(4);
+	WPI_TalonSRX bRight = new WPI_TalonSRX(5);
     
-    SpeedControllerGroup left = new SpeedControllerGroup(fLeft,bLeft);
-    SpeedControllerGroup right = new SpeedControllerGroup(fRight,fLeft);
+    SpeedControllerGroup left = new SpeedControllerGroup(fLeft,mLeft,bLeft);
+    SpeedControllerGroup right = new SpeedControllerGroup(fRight,mRight,fLeft);
 
     DifferentialDrive TestCoast = new DifferentialDrive(left,right);
     Joystick GamerStick = new Joystick(0);
+    @Override
+    public void autonomousInit(){
+    
+        
+
+       
+    }
     @Override
     public void teleopInit(){
 
