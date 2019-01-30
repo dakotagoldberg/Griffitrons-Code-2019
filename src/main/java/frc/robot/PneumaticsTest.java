@@ -16,7 +16,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
  * Add your docs here.
  */
 public class PneumaticsTest extends TimedRobot {
-    DoubleSolenoid sole = new DoubleSolenoid(3, 2);
+    DoubleSolenoid sole = new DoubleSolenoid(0, 1);
     Joystick joy = new Joystick(0);
 	WPI_TalonSRX bLeft = new WPI_TalonSRX(1);
 
