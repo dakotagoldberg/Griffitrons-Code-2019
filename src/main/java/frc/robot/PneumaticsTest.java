@@ -33,11 +33,11 @@ public class PneumaticsTest extends TimedRobot {
         else 
             bLeft.set(0);
 
-        if(joy.getRawButton(3) && bLeft.get() > 0.05)
+        if(joy.getRawButton(4) && Math.abs(bLeft.get()) > 0.05)
             sole.set(DoubleSolenoid.Value.kReverse);
-        else if(joy.getRawButton(4) && bLeft.get() > 0.05)
+        else if(joy.getRawButton(5) && Math.abs(bLeft.get()) > 0.05){
             sole.set(DoubleSolenoid.Value.kForward);
-        else
+        }else
             sole.set(DoubleSolenoid.Value.kOff);
     }
 
