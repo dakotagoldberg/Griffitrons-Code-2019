@@ -6,9 +6,34 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.possibleclasses;
-
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 /**
  * Add your docs here.
  */
 public class Elevator {
-}
+ 
+    private WPI_TalonSRX e1 = new WPI_TalonSRX(6);
+    private WPI_TalonSRX e2 = new WPI_TalonSRX(7);
+    private WPI_TalonSRX e3 = new WPI_TalonSRX(8);
+    private WPI_TalonSRX e4 = new WPI_TalonSRX(9);
+
+    int height1=42,height2=42,height3=42, storageHeight=42, groundHeight=42;
+
+    public void toHeight1(){
+        //takes elevator to height of choice
+    }
+    public void toHeight2(){
+        //takes elevator to height of choice
+    }
+    public void toHeight3(){
+        //takes elevator to height of choice
+    }
+    public void toStorageHeight(){
+        //takes elevator to height of choice
+    }
+    public void toGroundHeight(){
+        //takes elevator to height of choice
+    }
+    public void zeroElevator(){
+        //zeros the elevator location
+    }

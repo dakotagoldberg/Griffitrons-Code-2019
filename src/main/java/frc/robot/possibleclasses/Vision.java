@@ -7,8 +7,35 @@
 
 package frc.robot.possibleclasses;
 
-/**
- * Add your docs here.
- */
+
 public class Vision {
+    enum States{
+        Finding,Found, LinedUp;
+    }
+    int CenterX, CenterY,CenterTheta;
+    //udp listener
+
+
+    public Vision(){
+        States s = States.Finding;
+    }
+
+    private boolean cameraFeed(){
+        //whether or not you want camera feed
+        return true;
+    }
+    private cameraFeed CameraFeed(){
+        //gives the camera feed, obviously the return type isn't just Camera feed
+    }
+    public boolean acquired(){
+        //returns whether or not its on target allready
+        return true;
+    }
+    public int[] getGoal(){
+        //calculates cordinates needed for the tape and feeds it to drive
+    }
+    public camerafeed getCameraFeed(int cameraNum){
+        //gets camera feed, obviously not returning type camerafeed
+    }
+
 }
