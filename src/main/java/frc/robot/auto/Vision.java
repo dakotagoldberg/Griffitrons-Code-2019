@@ -35,7 +35,7 @@ public class Vision {
         //calculates cordinates needed for the tape and feeds it to drive
         return null;
     }
-    public void getCameraFeed(int cameraNum){
+    public void getJetsonData(int cameraNum){
         //gets camera feed, obviously not returning type camerafeed
     }
 
