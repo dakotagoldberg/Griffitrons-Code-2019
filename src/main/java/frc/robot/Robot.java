@@ -24,6 +24,13 @@ public class Robot extends TimedRobot implements Drive_Constants {
     DoubleSolenoid sole = new DoubleSolenoid(0, 1);
 
     @Override
+    public void robotInit() {
+        fRight.setInverted(true);
+        mRight.setInverted(true);
+        bRight.setInverted(true);
+    }
+
+    @Override
     public void autonomousInit() {
 
     }
