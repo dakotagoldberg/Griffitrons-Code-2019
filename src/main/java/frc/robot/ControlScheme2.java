@@ -75,6 +75,7 @@ public class ControlScheme2 extends TimedRobot {
         y *= (throttle*3)/4;
         
          left = GamerStick.getRawButton(4);
+
          right = GamerStick.getRawButton(5);
          
         double magnitude = Math.sqrt((y*y)+(x*x));

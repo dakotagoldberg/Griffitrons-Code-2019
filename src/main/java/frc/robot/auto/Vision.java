@@ -5,12 +5,12 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.possibleclasses;
+package frc.robot.auto;
 
 
 public class Vision {
     enum States{
-        Finding,Found, LinedUp;
+        Finding, Found, LinedUp;
     }
     int CenterX, CenterY,CenterTheta;
     //udp listener

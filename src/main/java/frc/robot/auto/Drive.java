@@ -1,5 +1,5 @@
 
-package frc.robot.possibleclasses;
+package frc.robot.auto;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
     
