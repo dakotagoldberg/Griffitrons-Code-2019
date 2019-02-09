@@ -37,3 +37,4 @@ public class Intake {
     public void rotateTO(int degrees){
         //rotates the input to that degree amount
     }
+}

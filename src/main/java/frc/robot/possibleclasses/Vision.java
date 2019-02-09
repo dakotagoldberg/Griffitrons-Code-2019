@@ -24,7 +24,7 @@ public class Vision {
         //whether or not you want camera feed
         return true;
     }
-    private cameraFeed CameraFeed(){
+    private void CameraFeed(){
         //gives the camera feed, obviously the return type isn't just Camera feed
     }
     public boolean acquired(){
@@ -33,8 +33,9 @@ public class Vision {
     }
     public int[] getGoal(){
         //calculates cordinates needed for the tape and feeds it to drive
+        return null;
     }
-    public camerafeed getCameraFeed(int cameraNum){
+    public void getCameraFeed(int cameraNum){
         //gets camera feed, obviously not returning type camerafeed
     }
 
