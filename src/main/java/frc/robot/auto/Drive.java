@@ -14,6 +14,7 @@ import jaci.pathfinder.modifiers.TankModifier;
  * Add your docs here.
  */
 public class Drive {
+    //this is not the actual wheel base width, when it is the actual wheel base width please delete me!
     //this value is in meters vvv
     double wheelbase_width = 0.5;
     private WPI_TalonSRX L1 = new WPI_TalonSRX(0);
