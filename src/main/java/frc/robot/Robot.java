@@ -16,18 +16,34 @@ public class Robot extends TimedRobot implements Drive_Constants {
     WPI_TalonSRX bRight = new WPI_TalonSRX(5);
 
     SpeedControllerGroup left = new SpeedControllerGroup(fLeft, mLeft, bLeft);
-    SpeedControllerGroup right = new SpeedControllerGroup(fRight, mRight, fLeft);
+    SpeedControllerGroup right = new SpeedControllerGroup(fRight, mRight, bRight);
 
     DifferentialDrive TestCoast = new DifferentialDrive(left, right);
     Joystick joy = new Joystick(0);
 
-    DoubleSolenoid sole = new DoubleSolenoid(0, 1);
+    DoubleSolenoid leftSole = new DoubleSolenoid(0, 1);
+    DoubleSolenoid rightSole = new DoubleSolenoid(2, 3);
 
     @Override
     public void robotInit() {
-        fRight.setInverted(true);
-        mRight.setInverted(true);
-        bRight.setInverted(true);
+        fLeft.configContinuousCurrentLimit(30);
+        mLeft.configContinuousCurrentLimit(30);
+        bLeft.configContinuousCurrentLimit(30);
+        fRight.configContinuousCurrentLimit(30);
+        mRight.configContinuousCurrentLimit(30);
+        bRight.configContinuousCurrentLimit(30);
+        fLeft.configPeakCurrentLimit(30);
+        mLeft.configPeakCurrentLimit(30);
+        bLeft.configPeakCurrentLimit(30);
+        fRight.configPeakCurrentLimit(30);
+        mRight.configPeakCurrentLimit(30);
+        bRight.configPeakCurrentLimit(30);
+        fLeft.configOpenloopRamp(.2);
+        mLeft.configOpenloopRamp(.2);
+        bLeft.configOpenloopRamp(.2);
+        fRight.configOpenloopRamp(.2);
+        mRight.configOpenloopRamp(.2);
+        bRight.configOpenloopRamp(.2);
     }
 
     @Override
@@ -45,12 +61,12 @@ public class Robot extends TimedRobot implements Drive_Constants {
         y = -joy.getY();
         x = joy.getX();
 
-        if (Math.abs(y) > 0.5)
+        if (Math.abs(y) > 0.01)
             throttle = y;
         else
             throttle = 0.0;
 
-        if (Math.abs(x) > 0.5)
+        if (Math.abs(x) > 0.25)
             turn = x;
         else
             turn = 0.0;
@@ -77,17 +93,21 @@ public class Robot extends TimedRobot implements Drive_Constants {
         t_left = throttle + turn;
         t_right = throttle - turn;
 
-        speedL = t_left;// + skim(t_right);
-        speedR = t_right;// + skim(t_left);
+        speedL = t_left + skim(t_right);
+        speedR = t_right + skim(t_left);
 
         TestCoast.tankDrive(speedL, speedR);
 
-        if (joy.getRawButton(4) && Math.abs(bLeft.get()) > 0.05)
-            sole.set(DoubleSolenoid.Value.kReverse);
-        else if (joy.getRawButton(5) && Math.abs(bLeft.get()) > 0.05) {
-            sole.set(DoubleSolenoid.Value.kForward);
-        } else
-            sole.set(DoubleSolenoid.Value.kOff);
+        if (joy.getRawButton(4)) {
+            leftSole.set(DoubleSolenoid.Value.kReverse);
+            rightSole.set(DoubleSolenoid.Value.kReverse);
+        } else if (joy.getRawButton(5)) {
+            leftSole.set(DoubleSolenoid.Value.kForward);
+            rightSole.set(DoubleSolenoid.Value.kForward);
+        } else {
+            leftSole.set(DoubleSolenoid.Value.kOff);
+            rightSole.set(DoubleSolenoid.Value.kOff);
+        }
 
     }
 
