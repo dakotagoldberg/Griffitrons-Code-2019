@@ -7,28 +7,24 @@ public class EchoServer extends Thread
 {
 	private DatagramSocket socket;
 	private boolean running;
-	private byte[] buf = new byte[256];
+	private byte[] buf = new byte[1024];
 
-	public EchoServer()
-	{
-		try 
-		{
-			socket = new DatagramSocket(1661);
-		}
-		catch(SocketException e)
-		{
+	private double throttle = 0.0;
+
+	public EchoServer() {
+		super("Server");
+		try {
+			socket = new DatagramSocket(5805);
+		} catch(SocketException e) {
 			e.printStackTrace();
 		}
 	}
 
-	public void run() 
-	{
+	public void run() {
 		running = true;
 
-		while(running) 
-		{
-			try
-			{
+		while(running) {
+			try {
 				DatagramPacket packet = new DatagramPacket(buf, buf.length);
 				socket.receive(packet);
 
@@ -38,26 +34,24 @@ public class EchoServer extends Thread
 				String received = 
 					new String(packet.getData(), 0, packet.getLength());
 				
-				System.out.println(received);
+				throttle = Double.parseDouble(received);
+				System.out.println(throttle);
 
-				if(received.equals("end"))
-				{
+				if(received.equals("end")) {
 					running = false;
 					continue;
 				}
 
 				socket.send(packet);
-			}
-			catch(IOException e)
-			{
+			} catch(IOException e) {
 				e.printStackTrace();
 			}
 		}
 		socket.close();
 	}
-	
-	public static void main(String[] args)
-	{
-		new EchoServer().run();
+
+	public double getThrottle(){
+		return throttle;
 	}
+
 }

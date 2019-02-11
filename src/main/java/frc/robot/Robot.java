@@ -2,6 +2,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import frc.robot.auto.EchoServer;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
@@ -15,6 +16,8 @@ public class Robot extends TimedRobot implements Drive_Constants {
     WPI_TalonSRX mRight = new WPI_TalonSRX(4);
     WPI_TalonSRX bRight = new WPI_TalonSRX(5);
 
+    EchoServer jetson;
+
     SpeedControllerGroup left = new SpeedControllerGroup(fLeft, mLeft, bLeft);
     SpeedControllerGroup right = new SpeedControllerGroup(fRight, mRight, bRight);
 
@@ -26,6 +29,8 @@ public class Robot extends TimedRobot implements Drive_Constants {
 
     @Override
     public void robotInit() {
+        jetson = new EchoServer();
+
         fLeft.configContinuousCurrentLimit(30);
         mLeft.configContinuousCurrentLimit(30);
         bLeft.configContinuousCurrentLimit(30);
@@ -47,8 +52,21 @@ public class Robot extends TimedRobot implements Drive_Constants {
     }
 
     @Override
-    public void autonomousInit() {
+    public void robotPeriodic() {
 
+    }
+
+    @Override
+    public void autonomousInit() {
+        jetson.start();
+    }
+
+    @Override
+    public void autonomousPeriodic() {
+        throttle = jetson.getThrottle();
+        speedL = throttle;
+        speedR = throttle;
+        TestCoast.tankDrive(speedL, speedR);
     }
 
     @Override
@@ -111,6 +129,12 @@ public class Robot extends TimedRobot implements Drive_Constants {
 
     }
 
+    @Override
+    public void testInit() {
+
+    }
+
+    @Override
     public void testPeriodic() {
         if (joy.getRawButton(1)) {
             fLeft.set(0);
@@ -165,6 +189,16 @@ public class Robot extends TimedRobot implements Drive_Constants {
             return -((v + 1.0) * gain_skim);
 
         return 0;
+    }
+
+    @Override
+    public void disabledInit() {
+
+    }
+
+    @Override
+    public void disabledPeriodic() {
+
     }
 
 }
