@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.auto.EchoServer;
 
+
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 public class Robot extends TimedRobot implements Drive_Constants {
@@ -66,6 +67,7 @@ public class Robot extends TimedRobot implements Drive_Constants {
         throttle = jetson.getThrottle();
         speedL = throttle;
         speedR = throttle;
+        // System.out.println(speedL + " " + speedR);
         TestCoast.tankDrive(speedL, speedR);
     }
 

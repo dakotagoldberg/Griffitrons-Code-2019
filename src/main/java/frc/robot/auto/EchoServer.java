@@ -35,7 +35,6 @@ public class EchoServer extends Thread
 					new String(packet.getData(), 0, packet.getLength());
 				
 				throttle = Double.parseDouble(received);
-				System.out.println(throttle);
 
 				if(received.equals("end")) {
 					running = false;
