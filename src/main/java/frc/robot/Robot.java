@@ -1,21 +1,22 @@
 package frc.robot;
 
+import frc.robot.auto.*;
+
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.auto.EchoServer;
 
-
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
-public class Robot extends TimedRobot implements Drive_Constants {
+public class Robot extends TimedRobot implements Drive_Constants, Control_Constants {
     double x, y, throttle, turn, speedL, speedR;
 
-    WPI_TalonSRX fLeft = new WPI_TalonSRX(0);
-    WPI_TalonSRX mLeft = new WPI_TalonSRX(1);
-    WPI_TalonSRX bLeft = new WPI_TalonSRX(2);
-    WPI_TalonSRX fRight = new WPI_TalonSRX(3);
-    WPI_TalonSRX mRight = new WPI_TalonSRX(4);
-    WPI_TalonSRX bRight = new WPI_TalonSRX(5);
+    WPI_TalonSRX fLeft = new WPI_TalonSRX(front_left);
+    WPI_TalonSRX mLeft = new WPI_TalonSRX(middle_left);
+    WPI_TalonSRX bLeft = new WPI_TalonSRX(back_left);
+    WPI_TalonSRX fRight = new WPI_TalonSRX(front_right);
+    WPI_TalonSRX mRight = new WPI_TalonSRX(middle_right);
+    WPI_TalonSRX bRight = new WPI_TalonSRX(back_right);
 
     EchoServer jetson;
 
@@ -23,7 +24,7 @@ public class Robot extends TimedRobot implements Drive_Constants {
     SpeedControllerGroup right = new SpeedControllerGroup(fRight, mRight, bRight);
 
     DifferentialDrive TestCoast = new DifferentialDrive(left, right);
-    Joystick joy = new Joystick(0);
+    XboxController driveBox = new XboxController(drive_controller);
 
     DoubleSolenoid leftSole = new DoubleSolenoid(0, 1);
     DoubleSolenoid rightSole = new DoubleSolenoid(2, 3);
@@ -32,24 +33,24 @@ public class Robot extends TimedRobot implements Drive_Constants {
     public void robotInit() {
         jetson = new EchoServer();
 
-        fLeft.configContinuousCurrentLimit(30);
-        mLeft.configContinuousCurrentLimit(30);
-        bLeft.configContinuousCurrentLimit(30);
-        fRight.configContinuousCurrentLimit(30);
-        mRight.configContinuousCurrentLimit(30);
-        bRight.configContinuousCurrentLimit(30);
-        fLeft.configPeakCurrentLimit(30);
-        mLeft.configPeakCurrentLimit(30);
-        bLeft.configPeakCurrentLimit(30);
-        fRight.configPeakCurrentLimit(30);
-        mRight.configPeakCurrentLimit(30);
-        bRight.configPeakCurrentLimit(30);
-        fLeft.configOpenloopRamp(.2);
-        mLeft.configOpenloopRamp(.2);
-        bLeft.configOpenloopRamp(.2);
-        fRight.configOpenloopRamp(.2);
-        mRight.configOpenloopRamp(.2);
-        bRight.configOpenloopRamp(.2);
+        fLeft.configContinuousCurrentLimit(continuous_current);
+        mLeft.configContinuousCurrentLimit(continuous_current);
+        bLeft.configContinuousCurrentLimit(continuous_current);
+        fRight.configContinuousCurrentLimit(continuous_current);
+        mRight.configContinuousCurrentLimit(continuous_current);
+        bRight.configContinuousCurrentLimit(continuous_current);
+        fLeft.configPeakCurrentLimit(peak_current);
+        mLeft.configPeakCurrentLimit(peak_current);
+        bLeft.configPeakCurrentLimit(peak_current);
+        fRight.configPeakCurrentLimit(peak_current);
+        mRight.configPeakCurrentLimit(peak_current);
+        bRight.configPeakCurrentLimit(peak_current);
+        fLeft.configOpenloopRamp(open_ramp);
+        mLeft.configOpenloopRamp(open_ramp);
+        bLeft.configOpenloopRamp(open_ramp);
+        fRight.configOpenloopRamp(open_ramp);
+        mRight.configOpenloopRamp(open_ramp);
+        bRight.configOpenloopRamp(open_ramp);
     }
 
     @Override
@@ -78,8 +79,8 @@ public class Robot extends TimedRobot implements Drive_Constants {
 
     @Override
     public void teleopPeriodic() {
-        y = -joy.getY();
-        x = joy.getX();
+        y = -driveBox.getRawAxis(left_y_axis);
+        x = driveBox.getRawAxis(right_x_axis);
 
         if (Math.abs(y) > 0.01)
             throttle = y;
@@ -118,10 +119,10 @@ public class Robot extends TimedRobot implements Drive_Constants {
 
         TestCoast.tankDrive(speedL, speedR);
 
-        if (joy.getRawButton(4)) {
+        if (driveBox.getRawButton(left_bumper)) {
             leftSole.set(DoubleSolenoid.Value.kReverse);
             rightSole.set(DoubleSolenoid.Value.kReverse);
-        } else if (joy.getRawButton(5)) {
+        } else if (driveBox.getRawButton(right_bumper)) {
             leftSole.set(DoubleSolenoid.Value.kForward);
             rightSole.set(DoubleSolenoid.Value.kForward);
         } else {
@@ -138,19 +139,19 @@ public class Robot extends TimedRobot implements Drive_Constants {
 
     @Override
     public void testPeriodic() {
-        if (joy.getRawButton(1)) {
+        if (driveBox.getRawButton(left_bumper)) {
             fLeft.set(0);
             mLeft.set(0);
             mLeft.set(0);
-            if (joy.getRawButton(3)) {
+            if (driveBox.getRawButton(x_button)) {
                 fRight.set(.5);
                 mRight.set(0);
                 bRight.set(0);
-            } else if (joy.getRawButton(4)) {
+            } else if (driveBox.getRawButton(y_button)) {
                 fRight.set(0);
                 mRight.set(.5);
                 bRight.set(0);
-            } else if (joy.getRawButton(5)) {
+            } else if (driveBox.getRawButton(b_button)) {
                 fRight.set(0);
                 mRight.set(0);
                 bRight.set(.5);
@@ -163,15 +164,15 @@ public class Robot extends TimedRobot implements Drive_Constants {
             fRight.set(0);
             mRight.set(0);
             bRight.set(0);
-            if (joy.getRawButton(3)) {
+            if (driveBox.getRawButton(x_button)) {
                 fLeft.set(.5);
                 mLeft.set(0);
                 bLeft.set(0);
-            } else if (joy.getRawButton(4)) {
+            } else if (driveBox.getRawButton(y_button)) {
                 fLeft.set(0);
                 mLeft.set(.5);
                 bLeft.set(0);
-            } else if (joy.getRawButton(5)) {
+            } else if (driveBox.getRawButton(b_button)) {
                 fLeft.set(0);
                 mLeft.set(0);
                 bLeft.set(.5);

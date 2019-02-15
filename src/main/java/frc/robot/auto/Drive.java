@@ -1,69 +1,79 @@
 
-// package frc.robot.auto;
+package frc.robot.auto;
 
-// import com.ctre.phoenix.motorcontrol.can.TalonSRXConfiguration;
-// import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.TalonSRXConfiguration;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
-// import edu.wpi.first.wpilibj.SpeedControllerGroup;
-// import jaci.pathfinder.*;
-// import jaci.pathfinder.Trajectory.FitMethod;
-// import jaci.pathfinder.followers.EncoderFollower;
-// import jaci.pathfinder.modifiers.TankModifier; 
+import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import frc.robot.*;
 
-// /**
-//  * Add your docs here.
-//  */
-// public class Drive {
-//     //this is not the actual wheel base width, when it is the actual wheel base width please delete me!
-//     //this value is in meters vvv
-//     double wheelbase_width = 0.5;
-//     private WPI_TalonSRX L1 = new WPI_TalonSRX(0);
-//     private WPI_TalonSRX L2 = new WPI_TalonSRX(1);
-//     private WPI_TalonSRX L3 = new WPI_TalonSRX(2);
-//     private WPI_TalonSRX R1 = new WPI_TalonSRX(3);
-//     private WPI_TalonSRX R2 = new WPI_TalonSRX(4);
-//     private WPI_TalonSRX R3 = new WPI_TalonSRX(5);
+import jaci.pathfinder.*;
+import jaci.pathfinder.Trajectory.FitMethod;
+import jaci.pathfinder.followers.EncoderFollower;
+import jaci.pathfinder.modifiers.TankModifier; 
 
-//     SpeedControllerGroup leftSpd = new SpeedControllerGroup(L1, L2, L3);
-//     SpeedControllerGroup rightSpd = new SpeedControllerGroup(R1, R2, R3);
+public class Drive implements Drive_Constants {
 
-//     Trajectory.Config config = new Trajectory.Config(FitMethod.HERMITE_CUBIC, Trajectory.Config.SAMPLES_HIGH,0.05,1.7,2.0,60.0);
-//     double feetToMeters = 0.3048;
+    static Trajectory.Config config = new Trajectory.Config(FitMethod.HERMITE_CUBIC, Trajectory.Config.SAMPLES_HIGH, 
+        time_step, max_vel, max_accel, max_jerk);
 
-//     public void autoPath(int path){
-//         //int fed from dash board determines path then it follows apropriate tape
-//     }
-//     public void setpoint(int x, int y, int theta){
-//         x *= feetToMeters;
-//         y *= feetToMeters;
-//         //give it a point and it goes there, theta for rotation
-//         //creates a single point as a single variable array because why not
-//         Waypoint[] point = {new Waypoint(x,y,theta)};
+    static Waypoint[] points;
+
+    public static void autoPath(int path){
+        if(path == 0) { // 0 = LEFT START
+            points = new Waypoint[] {
+                new Waypoint(1, 1, Pathfinder.d2r(45)),
+                new Waypoint(-1, 0, 0)
+            };
+        } else if(path == 1) { // 1 = MIDDLE START
+            points = new Waypoint[] {
+                new Waypoint(0, 1, 0),
+                new Waypoint(0, 0, Pathfinder.d2r(120)),
+                new Waypoint(0, 1, Pathfinder.d2r(120)),
+                new Waypoint(0, 0, Pathfinder.d2r(120)),
+                new Waypoint(0, 1, 0)
+            };
+        } else { // 2 = RIGHT START
+            points = new Waypoint[] {
+                new Waypoint(0.5, 1, 0),
+                new Waypoint(-1, 0, 0),
+                new Waypoint(0, -1, 0)
+            };
+        }
+    }
+
+    public static void execute(SpeedControllerGroup left, SpeedControllerGroup right){
         
-//         Trajectory trajectory = Pathfinder.generate(point, config);
-//         //takes the newly calculated trajectory and modifies the values iwth the handy dandy modify methods
-//         TankModifier modifier = new TankModifier(trajectory);
-//         modifier.modify(wheelbase_width);
-//         Trajectory leftTraj = modifier.getLeftTrajectory();
-//         Trajectory rightTraj = modifier.getRightTrajectory();
+        //Choose path
+        autoPath(1);
         
-//         EncoderFollower left = new EncoderFollower(leftTraj);
-//         EncoderFollower right = new EncoderFollower(rightTraj);
+        //Calculate trajectory
+        Trajectory trajectory = Pathfinder.generate(points, config);
+        
+        //Modify trajectory for tank
+        TankModifier modifier = new TankModifier(trajectory);
+        modifier.modify(wheelbase_width);
 
-//         // left.configureEncoder(getEncPosition(), 1000, wheel_diameter);
-//         // right.configureEncoder(getEncoderPosition(), 1000, wheel_diameter);
+        Trajectory leftTraj = modifier.getLeftTrajectory();
+        Trajectory rightTraj = modifier.getRightTrajectory();
+        
+        //Feed trajectories to encoders
+        EncoderFollower leftEnc = new EncoderFollower(leftTraj);
+        EncoderFollower rightEnc = new EncoderFollower(rightTraj);
 
-//         // left.configurePIDVA(kp, ki, kd, kv, ka);
-//         // right.configurePIDVA(kp, ki, kd, kv, ka);
+        leftEnc.configureEncoder(0, 1000, 2 * wheel_radius);
+        rightEnc.configureEncoder(0, 1000, 2 * wheel_radius);
+ 
+        //Tune PID
+        leftEnc.configurePIDVA(kp, ki, kd, 0, 0);
+        rightEnc.configurePIDVA(kp, ki, kd, 0, 0);
 
-//         // double lOutput = left.calculate(getEncoderPosition());
-//         // double rOutput = left.calculate(getEncoderPosition());
+        while(!(leftEnc.isFinished() && rightEnc.isFinished())) {
+            double lOutput = leftEnc.calculate(encoder_tick);
+            double rOutput = leftEnc.calculate(encoder_tick);
+            left.set(lOutput);
+            right.set(rOutput);
+        }
+    }
 
-//         // leftSpd.set(lOutput);
-//         // rightSpd.set(rOutput);
-//     }
-//     public void setpointArray(int[] cords){
-//         //set point but it recieves array from GetGoal;
-//     }
-
-// }
+}
