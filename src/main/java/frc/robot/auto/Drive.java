@@ -65,8 +65,8 @@ public class Drive implements Drive_Constants {
         rightEnc.configureEncoder(0, 1000, 2 * wheel_radius);
  
         //Tune PID
-        leftEnc.configurePIDVA(kp, ki, kd, 0, 0);
-        rightEnc.configurePIDVA(kp, ki, kd, 0, 0);
+        leftEnc.configurePIDVA(kP, kI, kD, 0.0, 0.0);
+        rightEnc.configurePIDVA(kP, kI, kD, 0.0, 0.0);
 
         while(!(leftEnc.isFinished() && rightEnc.isFinished())) {
             double lOutput = leftEnc.calculate(encoder_tick);

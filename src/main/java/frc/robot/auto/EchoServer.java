@@ -49,7 +49,7 @@ public class EchoServer extends Thread
 		socket.close();
 	}
 
-	public double getThrottle(){
+	public double getThrottle() {
 		return throttle;
 	}
 

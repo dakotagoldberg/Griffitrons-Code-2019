@@ -36,5 +36,9 @@ public interface Drive_Constants {
     final static int continuous_current = 30;
     final static int peak_current = 30;
     final static double open_ramp = 0.2;
+
+    final static double kP = 0.0;
+    final static double kI = 0.0;
+    final static double kD = 0.0;
     
 }

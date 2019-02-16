@@ -5,6 +5,7 @@ import frc.robot.auto.*;
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.auto.EchoServer;
+import frc.robot.auto.NetworkTables;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
@@ -19,6 +20,7 @@ public class Robot extends TimedRobot implements Drive_Constants, Control_Consta
     WPI_TalonSRX bRight = new WPI_TalonSRX(back_right);
 
     EchoServer jetson;
+    NetworkTables table;
 
     SpeedControllerGroup left = new SpeedControllerGroup(fLeft, mLeft, bLeft);
     SpeedControllerGroup right = new SpeedControllerGroup(fRight, mRight, bRight);
@@ -32,6 +34,7 @@ public class Robot extends TimedRobot implements Drive_Constants, Control_Consta
     @Override
     public void robotInit() {
         jetson = new EchoServer();
+        table = new NetworkTables();
 
         fLeft.configContinuousCurrentLimit(continuous_current);
         mLeft.configContinuousCurrentLimit(continuous_current);
@@ -68,7 +71,6 @@ public class Robot extends TimedRobot implements Drive_Constants, Control_Consta
         throttle = jetson.getThrottle();
         speedL = throttle;
         speedR = throttle;
-        // System.out.println(speedL + " " + speedR);
         TestCoast.tankDrive(speedL, speedR);
     }
 
