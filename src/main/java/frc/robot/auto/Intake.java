@@ -24,7 +24,7 @@ public class Intake {
     // private WPI_TalonSRX rotation = new WPI_TalonSRX(14);
     private double h1zero = 42, h2zero = 42;
     private double clawClosed = 720, clawOpened = 720;
-    private double gearRatio = 1/100, degreesToTicks = 4096/360;
+    private double gearRatio = 1./100, degreesToTicks = 4096./360;
 
     private static final int kPIDLoopIdx = 0;
     private static final int kTimeoutMs = 0;
@@ -106,7 +106,7 @@ public class Intake {
         c2.config_kI(kSlotIdx, ki, kTimeoutMs);
 
         c1.config_kD(kSlotIdx, kd, kTimeoutMs);
-        c2.config_kD(kSlotIdx, kd, kTimeoutMs);
+        c2.config_kD(kSlotIdx, kd, kTimeoutMs); 
 
         c1.configMotionCruiseVelocity(15000, kTimeoutMs);
         c2.configMotionCruiseVelocity(15000, kTimeoutMs);
