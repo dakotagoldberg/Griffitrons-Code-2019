@@ -69,10 +69,10 @@ public class Drive implements Drive_Constants {
         rightEnc.configurePIDVA(kP, kI, kD, 0.0, 0.0);
 
         while(!(leftEnc.isFinished() && rightEnc.isFinished())) {
-            double lOutput = leftEnc.calculate(encoder_tick);
-            double rOutput = leftEnc.calculate(encoder_tick);
-            left.set(lOutput);
-            right.set(rOutput);
+            // double lOutput = leftEnc.calculate(encoder_tick);
+            // double rOutput = leftEnc.calculate(encoder_tick);
+            // left.set(lOutput);
+            // right.set(rOutput);
         }
     }
 

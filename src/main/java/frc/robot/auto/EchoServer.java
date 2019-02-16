@@ -10,6 +10,7 @@ public class EchoServer extends Thread
 	private byte[] buf = new byte[1024];
 
 	private double throttle = 0.0;
+	private double turn = 0.0;
 
 	public EchoServer() {
 		super("Server");
@@ -34,7 +35,8 @@ public class EchoServer extends Thread
 				String received = 
 					new String(packet.getData(), 0, packet.getLength());
 				
-				throttle = Double.parseDouble(received);
+				throttle = Double.parseDouble(received.substring(0, 4));
+				turn = Double.parseDouble(received.substring(4, 8));
 
 				if(received.equals("end")) {
 					running = false;
@@ -51,6 +53,10 @@ public class EchoServer extends Thread
 
 	public double getThrottle() {
 		return throttle;
+	}
+
+	public double getTurn() { 
+		return turn;
 	}
 
 }
