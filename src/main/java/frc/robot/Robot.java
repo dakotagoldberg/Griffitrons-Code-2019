@@ -86,6 +86,12 @@ public class Robot extends TimedRobot implements Drive_Constants, Control_Consta
 
     @Override
     public void teleopPeriodic() {
+
+        if (driveBox.getRawButton(4))
+            claws.hatchIntake();
+        else if (driveBox.getRawButton(5))
+            claws.hatchShoot();
+            
         y = -driveBox.getRawAxis(left_y_axis);
         x = driveBox.getRawAxis(right_x_axis);
 
@@ -147,10 +153,7 @@ public class Robot extends TimedRobot implements Drive_Constants, Control_Consta
     @Override
     public void testPeriodic() {
 
-        if (driveBox.getRawButton(4))
-            claws.hatchIntake();
-        else if (driveBox.getRawButton(5))
-            claws.hatchShoot();
+        
         // if (driveBox.getRawButton(left_bumper)) {
         // fLeft.set(0);
         // mLeft.set(0);
