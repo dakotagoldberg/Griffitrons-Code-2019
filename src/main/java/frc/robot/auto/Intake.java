@@ -42,7 +42,7 @@ public class Intake {
 
     public void hatchIntake() {
         // turns rolllers and such to intake hatch
-        System.out.println(FeedbackDevice.CTRE_MagEncoder_Absolute;
+        System.out.println(FeedbackDevice.CTRE_MagEncoder_Absolute);
         System.out.println(clawOpened*degreesToTicks*gearRatio);
         //System.out.println(-clawOpened*degreesToTicks*gearRatio);
         c1.set(ControlMode.MotionMagic,clawOpened*degreesToTicks*gearRatio);
