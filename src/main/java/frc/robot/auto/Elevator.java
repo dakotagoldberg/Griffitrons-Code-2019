@@ -5,13 +5,13 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.possibleclasses;
+package frc.robot.auto;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 /**
  * Add your docs here.
  */
 public class Elevator {
- 
+
     private WPI_TalonSRX e1 = new WPI_TalonSRX(6);
     private WPI_TalonSRX e2 = new WPI_TalonSRX(7);
     private WPI_TalonSRX e3 = new WPI_TalonSRX(8);
@@ -37,3 +37,4 @@ public class Elevator {
     public void zeroElevator(){
         //zeros the elevator location
     }
+}

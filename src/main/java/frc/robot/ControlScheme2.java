@@ -5,7 +5,6 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 
 import edu.wpi.first.wpilibj.Joystick;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 
 // @authors: Spencer Collins, Dakota Goldberg, and Leonard Kakinuma
@@ -75,6 +74,7 @@ public class ControlScheme2 extends TimedRobot {
         y *= (throttle*3)/4;
         
          left = GamerStick.getRawButton(4);
+
          right = GamerStick.getRawButton(5);
          
         double magnitude = Math.sqrt((y*y)+(x*x));
