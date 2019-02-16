@@ -66,15 +66,17 @@ public class Robot extends TimedRobot implements Drive_Constants, Control_Consta
 
     @Override
     public void autonomousInit() {
-        // jetson.start();
+        jetson.start();
     }
 
     @Override
     public void autonomousPeriodic() {
         throttle = jetson.getThrottle();
-        speedL = throttle;
-        speedR = throttle;
-        TestCoast.tankDrive(speedL, speedR);
+        turn = jetson.getTurn();
+        System.out.println(throttle + " " + turn);
+        // speedL = throttle;
+        // speedR = throttle;
+        // TestCoast.tankDrive(speedL, speedR);
     }
 
     @Override
