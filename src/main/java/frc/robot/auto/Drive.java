@@ -1,18 +1,11 @@
-
 package frc.robot.auto;
-
-import com.ctre.phoenix.motorcontrol.can.TalonSRXConfiguration;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
-import frc.robot.*;
 
 import jaci.pathfinder.*;
 import jaci.pathfinder.Trajectory.FitMethod;
 import jaci.pathfinder.followers.EncoderFollower;
 import jaci.pathfinder.modifiers.TankModifier; 
 
-public class Drive implements Drive_Constants {
+public class Drive implements Robot_Framework {
 
     static Trajectory.Config config = new Trajectory.Config(FitMethod.HERMITE_CUBIC, Trajectory.Config.SAMPLES_HIGH, 
         time_step, max_vel, max_accel, max_jerk);
@@ -42,8 +35,7 @@ public class Drive implements Drive_Constants {
         }
     }
 
-    public static void execute(SpeedControllerGroup left, SpeedControllerGroup right){
-        
+    public static void execute(){
         //Choose path
         autoPath(1);
         
@@ -65,8 +57,8 @@ public class Drive implements Drive_Constants {
         rightEnc.configureEncoder(0, 1000, 2 * wheel_radius);
  
         //Tune PID
-        leftEnc.configurePIDVA(kP, kI, kD, 0.0, 0.0);
-        rightEnc.configurePIDVA(kP, kI, kD, 0.0, 0.0);
+        leftEnc.configurePIDVA(dash.getP(), dash.getI(), dash.getD(), 0.0, 0.0);
+        rightEnc.configurePIDVA(dash.getP(), dash.getI(), dash.getD(), 0.0, 0.0);
 
         while(!(leftEnc.isFinished() && rightEnc.isFinished())) {
             // double lOutput = leftEnc.calculate(encoder_tick);

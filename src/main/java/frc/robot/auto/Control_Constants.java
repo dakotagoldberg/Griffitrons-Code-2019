@@ -1,9 +1,6 @@
 package frc.robot.auto;
 
 public interface Control_Constants {
-    final static int drive_controller = 0;
-    final static int other_controller = 1;
-
     final static int left_x_axis = 0;
     final static int left_y_axis = 1;
 
@@ -23,5 +20,4 @@ public interface Control_Constants {
     final static int start_button = 7;
     final static int left_stick_button = 8;
     final static int right_stick_button = 9;
-
 }

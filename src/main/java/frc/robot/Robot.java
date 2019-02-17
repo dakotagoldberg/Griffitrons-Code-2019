@@ -3,42 +3,12 @@ package frc.robot;
 import frc.robot.auto.*;
 
 import edu.wpi.first.wpilibj.*;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import frc.robot.auto.EchoServer;
-import frc.robot.auto.NetworkTables;
 
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-
-public class Robot extends TimedRobot implements Drive_Constants, Control_Constants {
-    double x, y, throttle, turn, speedL, speedR;
-
-    WPI_TalonSRX fLeft = new WPI_TalonSRX(front_left);
-    WPI_TalonSRX mLeft = new WPI_TalonSRX(middle_left);
-    WPI_TalonSRX bLeft = new WPI_TalonSRX(back_left);
-    WPI_TalonSRX fRight = new WPI_TalonSRX(front_right);
-    WPI_TalonSRX mRight = new WPI_TalonSRX(middle_right);
-    WPI_TalonSRX bRight = new WPI_TalonSRX(back_right);
-
-    EchoServer jetson;
-    NetworkTables table;
-    // EchoServer jetson;
-    Intake claws;
-
-    SpeedControllerGroup left = new SpeedControllerGroup(fLeft, mLeft, bLeft);
-    SpeedControllerGroup right = new SpeedControllerGroup(fRight, mRight, bRight);
-
-    DifferentialDrive TestCoast = new DifferentialDrive(left, right);
-    XboxController driveBox = new XboxController(drive_controller);
-
-    // DoubleSolenoid leftSole = new DoubleSolenoid(0, 1);
-    // DoubleSolenoid rightSole = new DoubleSolenoid(2, 3);
+public class Robot extends TimedRobot implements Robot_Framework {
+    double x, y, throttle, turn, speedL, speedR, t_left, t_right;
 
     @Override
     public void robotInit() {
-        jetson = new EchoServer();
-        table = new NetworkTables();
-        claws = new Intake();
-
         fLeft.configContinuousCurrentLimit(continuous_current);
         mLeft.configContinuousCurrentLimit(continuous_current);
         bLeft.configContinuousCurrentLimit(continuous_current);
@@ -61,7 +31,7 @@ public class Robot extends TimedRobot implements Drive_Constants, Control_Consta
 
     @Override
     public void robotPeriodic() {
-
+        dash.update();
     }
 
     @Override
@@ -73,10 +43,13 @@ public class Robot extends TimedRobot implements Drive_Constants, Control_Consta
     public void autonomousPeriodic() {
         throttle = jetson.getThrottle();
         turn = jetson.getTurn();
-        System.out.println(throttle + " " + turn);
-        // speedL = throttle;
-        // speedR = throttle;
-        // TestCoast.tankDrive(speedL, speedR);
+
+        t_left = throttle - turn;
+        t_right = throttle + turn;
+        speedL = t_left + skim(t_right);
+        speedR = t_right + skim(t_left);
+
+        //drive.tankDrive(speedL, speedR);
     }
 
     @Override
@@ -89,12 +62,12 @@ public class Robot extends TimedRobot implements Drive_Constants, Control_Consta
         y = -driveBox.getRawAxis(left_y_axis);
         x = driveBox.getRawAxis(right_x_axis);
 
-        if (Math.abs(y) > 0.01)
+        if (Math.abs(y) > 0.1)
             throttle = y;
         else
             throttle = 0.0;
 
-        if (Math.abs(x) > 0.25)
+        if (Math.abs(x) > 0.1)
             turn = x;
         else
             turn = 0.0;
@@ -117,14 +90,13 @@ public class Robot extends TimedRobot implements Drive_Constants, Control_Consta
         // if(throttle > 0.5)
         // turn = turn * (gain_turn * Math.abs(throttle));
 
-        double t_left, t_right;
         t_left = throttle + turn;
         t_right = throttle - turn;
 
         speedL = t_left + skim(t_right);
         speedR = t_right + skim(t_left);
 
-        TestCoast.tankDrive(speedL, speedR);
+        drive.tankDrive(speedL, speedR);
 
         // if (driveBox.getRawButton(left_bumper)) {
         // leftSole.set(DoubleSolenoid.Value.kReverse);

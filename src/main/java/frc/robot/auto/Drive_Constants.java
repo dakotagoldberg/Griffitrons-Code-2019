@@ -14,6 +14,7 @@ public interface Drive_Constants {
     final static int num_motors = 6;
     final static double low_gear_ratio = 0.115;
     final static double high_gear_ratio = 0.277;
+
     final static double torque = torque_per_motor * num_motors * high_gear_ratio; // N*m
 
     final static double wheel_radius = .0508; // m
@@ -24,21 +25,8 @@ public interface Drive_Constants {
 
     final static double wheelbase_width = 28.0 / 12 * feet_to_meters;
 
-
-    final static int front_left = 0;
-    final static int middle_left = 1;
-    final static int back_left = 2;
-    final static int front_right = 3;
-    final static int middle_right = 4;
-    final static int back_right = 5;
-
-
     final static int continuous_current = 30;
     final static int peak_current = 30;
     final static double open_ramp = 0.2;
-
-    final static double kP = 0.0;
-    final static double kI = 0.0;
-    final static double kD = 0.0;
     
 }

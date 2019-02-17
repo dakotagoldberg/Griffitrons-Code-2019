@@ -3,7 +3,7 @@ package frc.robot.auto;
 import java.net.*;
 import java.io.*;
 
-public class EchoServer extends Thread 
+public class EchoServer extends Thread implements Robot_Framework
 {
 	private DatagramSocket socket;
 	private boolean running;
