@@ -1,4 +1,4 @@
-package frc.robot.auto;
+package frc.robot.constants;
 
 public interface ID_Constants {
     final static int drive_controller = 0;

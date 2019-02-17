@@ -1,4 +1,4 @@
-package frc.robot.auto;
+package frc.robot.constants;
 
 public interface Control_Constants {
     final static int left_x_axis = 0;

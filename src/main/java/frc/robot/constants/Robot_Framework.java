@@ -1,5 +1,6 @@
-package frc.robot.auto;
+package frc.robot.constants;
 
+import frc.robot.auto.*;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.*;

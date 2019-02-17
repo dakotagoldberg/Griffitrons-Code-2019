@@ -1,6 +1,6 @@
 package frc.robot;
 
-import frc.robot.auto.*;
+import frc.robot.constants.Robot_Framework;
 
 import edu.wpi.first.wpilibj.*;
 
@@ -124,8 +124,6 @@ public class Robot extends TimedRobot implements Robot_Framework {
 
     @Override
     public void testPeriodic() {
-
-        
         // if (driveBox.getRawButton(left_bumper)) {
         // fLeft.set(0);
         // mLeft.set(0);

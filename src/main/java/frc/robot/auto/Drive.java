@@ -1,5 +1,6 @@
 package frc.robot.auto;
 
+import frc.robot.constants.Robot_Framework;
 import jaci.pathfinder.*;
 import jaci.pathfinder.Trajectory.FitMethod;
 import jaci.pathfinder.followers.EncoderFollower;

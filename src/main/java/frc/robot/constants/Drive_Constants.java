@@ -1,4 +1,4 @@
-package frc.robot.auto;
+package frc.robot.constants;
 
 public interface Drive_Constants {
     final static double gain_skim = 0.9;
