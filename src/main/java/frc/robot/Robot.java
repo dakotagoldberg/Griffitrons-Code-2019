@@ -124,7 +124,10 @@ public class Robot extends TimedRobot implements Robot_Framework {
             claws.hatchRelease();
         else if(driveBox.getRawButton(right_bumper))
             claws.hatchGrab();
-        System.out.println(leftClaw.getSensorCollection().getPulseWidthPosition());
+        else if(driveBox.getRawButton(b_button))
+            claws.ballGrab();
+        System.out.println(leftElev.getSensorCollection().getPulseWidthPosition() + " "
+                        + rightClaw.getSensorCollection().getPulseWidthPosition());
     }
 
     public double skim(double v) {

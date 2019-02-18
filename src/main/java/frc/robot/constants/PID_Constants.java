@@ -5,18 +5,57 @@ public interface PID_Constants {
     int kTimeoutMs = 10;
 
     //Claw Control
-    double left_claw_closed = 53; 
-    double left_claw_open = 319;
+    double left_claw_open = -219;
+    double left_claw_ball = 82;
+    double left_claw_closed = 314; 
 
-    double right_claw_closed = 0;
-    double right_claw_open = 0;
+    double right_claw_open = 4456;
+    double right_claw_ball = 4161;
+    double right_claw_closed = 3775;
 
+
+    double claw_p = 4.0;
+    double claw_i = 0.008;
+    double claw_d = 180.0;
     double claw_f = 1.17;
 
     int claw_cruise_velocity = 737;
     int claw_cruise_accel = 737;
 
     //Intake Rotate Control
+    double intake_rotate_hatch = 0; 
+    double intake_rotate_ball = 0;
 
-    //Elevato Control
+    double intake_rotate_p = 4.0;
+    double intake_rotate_i = 0.008;
+    double intake_rotate_d = 180.0;
+    double intake_rotate_f = 1.17;
+
+    int intake_rotate_cruise_velocity = 737;
+    int intake_rotate_cruise_accel = 737;
+
+    //Elevator Control
+    double left_elev_hatch_top = 314; 
+    double left_elev_hatch_middle = -219;
+    double left_elev_hatch_bottom = 82;
+
+    double left_elev_ball_top = 3775;
+    double left_elev_ball_middle = 4456;
+    double left_elev_ball_bottom = 4161;
+
+    double right_elev_hatch_top = 314; 
+    double right_elev_hatch_middle = -219;
+    double right_elev_hatch_bottom = 82;
+
+    double right_elev_ball_top = 3775;
+    double right_elev_ball_middle = 4456;
+    double right_elev_ball_bottom = 4161;
+
+    double elev_p = 4.0;
+    double elev_i = 0.008;
+    double elev_d = 180.0;
+    double elev_f = 1.17;
+
+    int elev_cruise_velocity = 737;
+    int elev_cruise_accel = 737;
 }

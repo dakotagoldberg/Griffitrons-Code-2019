@@ -9,9 +9,9 @@ import edu.wpi.first.wpilibj.DriverStation.Alliance;
 public class NetworkTables implements Robot_Framework {
 
     public NetworkTables() {
-        SmartDashboard.putNumber("p", 9.00); //starting PID values
-		SmartDashboard.putNumber("i", 0.008); 
-        SmartDashboard.putNumber("d", 90.0);
+        SmartDashboard.putNumber("p", 0.00); //starting PID values
+		SmartDashboard.putNumber("i", 0.00); 
+        SmartDashboard.putNumber("d", 0.00);
         
         SmartDashboard.putNumber("gyro", 0.00);
         SmartDashboard.putBoolean("gyroReset", false);
@@ -105,7 +105,7 @@ public class NetworkTables implements Robot_Framework {
 		// SmartDashboard.putNumber("lEnc", fLeft.getSensorCollection().getPulseWidthPosition());
 		// SmartDashboard.putNumber("rEnc", fRight.getSensorCollection().getPulseWidthPosition());
 		SmartDashboard.putNumber("intakeEnc", leftClaw.getSensorCollection().getPulseWidthPosition());
-        // SmartDashboard.putNumber("rotationEnc", iRotate.getSensorCollection().getPulseWidthPosition());
+        SmartDashboard.putNumber("rotationEnc", rightClaw.getSensorCollection().getPulseWidthPosition());
         // SmartDashboard.putNumber("elevatorEnc", leftElev.getSensorCollection().getPulseWidthPosition());
 
         /**
