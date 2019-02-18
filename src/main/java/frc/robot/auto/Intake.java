@@ -7,6 +7,7 @@
 
 package frc.robot.auto;
 
+import frc.robot.constants.Robot_Framework;
 import com.ctre.phoenix.motorcontrol.can.*;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
@@ -15,22 +16,10 @@ import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 /**
  * Add your docs here.
  */
-public class Intake {
-
-    private TalonSRX c1 = new TalonSRX(2);
-    private TalonSRX c2 = new TalonSRX(1);
-    // private WPI_TalonSRX w1 = new WPI_TalonSRX(12);
-    // private WPI_TalonSRX w2 = new WPI_TalonSRX(13);
-    // private WPI_TalonSRX rotation = new WPI_TalonSRX(14);
-    private double h1zero = 42, h2zero = 42;
-    private double clawClosed = 1440, clawOpened = 1440;
-    private double gearRatio = 1./100, degreesToTicks = 4096./360;
+public class Intake implements Robot_Framework {
 
     private static final int kPIDLoopIdx = 0;
-    private static final int kTimeoutMs = 0;
     private static final int kSlotIdx = 0;
-
-    private static final double kp = 0.2, ki = 0, kd = 0, kf = 0.2, izone = 0, peakOutput = 1;
 
     public void ballIntake() {
         // turns rolllers and such to intake ball
@@ -40,80 +29,72 @@ public class Intake {
         // turns rolllers and such to shoot ball
     }
 
-    public void hatchIntake() {
+    public void hatchGrab() {
         // turns rolllers and such to intake hatch
-        System.out.println(FeedbackDevice.CTRE_MagEncoder_Absolute);
-        System.out.println(clawOpened*degreesToTicks*gearRatio);
-        //System.out.println(-clawOpened*degreesToTicks*gearRatio);
-        c1.set(ControlMode.MotionMagic,clawOpened*degreesToTicks*gearRatio);
-        c2.set(ControlMode.MotionMagic,-clawOpened*degreesToTicks*gearRatio);
+        leftClaw.config_kP(kSlotIdx, dash.getP(), kTimeoutMs);
+        rightClaw.config_kP(kSlotIdx, dash.getP(), kTimeoutMs);
+
+        leftClaw.config_kI(kSlotIdx, dash.getI(), kTimeoutMs);
+        rightIntake.config_kI(kSlotIdx, dash.getI(), kTimeoutMs);
+
+        leftClaw.config_kD(kSlotIdx, dash.getD(), kTimeoutMs);
+        rightClaw.config_kD(kSlotIdx, dash.getD(), kTimeoutMs); 
+
+        leftClaw.set(ControlMode.MotionMagic, left_claw_open);
+        rightClaw.set(ControlMode.MotionMagic, 319);
     }
 
-    public void hatchShoot() {
+    public void hatchRelease() {
         // turns rolllers and such to release hatch
-        c1.set(ControlMode.MotionMagic,clawClosed*degreesToTicks*gearRatio);
-        c2.set(ControlMode.MotionMagic,-clawClosed*degreesToTicks*gearRatio);
-        
+        leftClaw.config_kP(kSlotIdx, dash.getP(), kTimeoutMs);
+        rightClaw.config_kP(kSlotIdx, dash.getP(), kTimeoutMs);
+
+        leftClaw.config_kI(kSlotIdx, dash.getI(), kTimeoutMs);
+        rightIntake.config_kI(kSlotIdx, dash.getI(), kTimeoutMs);
+
+        leftClaw.config_kD(kSlotIdx, dash.getD(), kTimeoutMs);
+        rightClaw.config_kD(kSlotIdx, dash.getD(), kTimeoutMs); 
+
+        leftClaw.set(ControlMode.MotionMagic, left_claw_closed);
+        rightClaw.set(ControlMode.MotionMagic, 53);
     }
 
     public void zeroRotation() {
         // zeros the Rotation
     }
 
-    public void rotateTO(int degrees) {
+    public void rotateTo(int degrees) {
         // rotates the input to that degree amount
     }
 
     public Intake(){
-        c2.configFactoryDefault();
-        c1.configFactoryDefault();
+        leftClaw.configFactoryDefault();
+        rightIntake.configFactoryDefault();
+
+        leftClaw.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, kPIDLoopIdx, kTimeoutMs );
+        rightClaw.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, kPIDLoopIdx, kTimeoutMs );
+
+        leftClaw.setSensorPhase(false);
+        rightClaw.setSensorPhase(false);
         
-        c1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, kPIDLoopIdx,kTimeoutMs );
-        c2.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, kPIDLoopIdx,kTimeoutMs );
+        leftClaw.setInverted(false);
+        rightClaw.setInverted(false);
 
-        c1.setSensorPhase(true);
-        c2.setSensorPhase(true);
-        c1.setInverted(false);
-        c2.setInverted(false);
+        leftClaw.setStatusFramePeriod(StatusFrameEnhanced.Status_13_Base_PIDF0, 10, kTimeoutMs);
+        rightClaw.setStatusFramePeriod(StatusFrameEnhanced.Status_13_Base_PIDF0, 10, kTimeoutMs);
+        leftClaw.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10, kTimeoutMs);
+        rightIntake.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10, kTimeoutMs);
 
-        c1.setStatusFramePeriod(StatusFrameEnhanced.Status_13_Base_PIDF0, 10, kTimeoutMs);
-        c2.setStatusFramePeriod(StatusFrameEnhanced.Status_13_Base_PIDF0, 10, kTimeoutMs);
-        c1.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10, kTimeoutMs);
-        c2.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10, kTimeoutMs);
-        
-        c1.configNominalOutputForward(0, kTimeoutMs);
-        c2.configNominalOutputForward(0, kTimeoutMs);
+        leftClaw.selectProfileSlot(kSlotIdx, kPIDLoopIdx);
+        rightClaw.selectProfileSlot(kSlotIdx, kPIDLoopIdx);
 
-        c1.configNominalOutputReverse(0, kTimeoutMs);
-        c2.configNominalOutputReverse(0, kTimeoutMs);
+        leftClaw.config_kF(kSlotIdx, kF, kTimeoutMs);
+        rightClaw.config_kF(kSlotIdx, kF, kTimeoutMs); 
 
-        c1.configPeakOutputForward(1, kTimeoutMs);
-        c2.configPeakOutputForward(1, kTimeoutMs);
+        leftClaw.configMotionCruiseVelocity(cruise_velocity);
+        rightClaw.configMotionCruiseVelocity(cruise_velocity);
 
-        c1.configPeakOutputReverse(-1, kTimeoutMs);
-        c2.configPeakOutputReverse(-1, kTimeoutMs);
-
-        c1.selectProfileSlot(kSlotIdx, kPIDLoopIdx);
-        c2.selectProfileSlot(kSlotIdx, kPIDLoopIdx);
-
-        c1.config_kF(kSlotIdx, kf, kTimeoutMs);
-        c2.config_kF(kSlotIdx, kf, kTimeoutMs);
-
-        c1.config_kP(kSlotIdx, kp, kTimeoutMs);
-        c2.config_kP(kSlotIdx, kp, kTimeoutMs);
-
-        c1.config_kI(kSlotIdx, ki, kTimeoutMs);
-        c2.config_kI(kSlotIdx, ki, kTimeoutMs);
-
-        c1.config_kD(kSlotIdx, kd, kTimeoutMs);
-        c2.config_kD(kSlotIdx, kd, kTimeoutMs); 
-
-        c1.configMotionCruiseVelocity(1500, kTimeoutMs);
-        c2.configMotionCruiseVelocity(1500, kTimeoutMs);
-        c1.configMotionAcceleration(600, kTimeoutMs);
-        c2.configMotionAcceleration(600, kTimeoutMs);
-
-        c1.setSelectedSensorPosition(0, kPIDLoopIdx, kTimeoutMs);
-        c2.setSelectedSensorPosition(0, kPIDLoopIdx, kTimeoutMs);
+        leftClaw.configMotionAcceleration(cruise_accel);
+        rightClaw.configMotionAcceleration(cruise_accel);
     }
 }

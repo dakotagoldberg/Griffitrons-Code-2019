@@ -3,6 +3,7 @@ package frc.robot;
 import frc.robot.constants.Robot_Framework;
 
 import edu.wpi.first.wpilibj.*;
+import edu.wpi.first.wpilibj.GenericHID.Hand;
 
 public class Robot extends TimedRobot implements Robot_Framework {
     double x, y, throttle, turn, speedL, speedR, t_left, t_right;
@@ -59,11 +60,6 @@ public class Robot extends TimedRobot implements Robot_Framework {
 
     @Override
     public void teleopPeriodic() {
-
-        if (driveBox.getRawButton(4))
-            claws.hatchIntake();
-        else if (driveBox.getRawButton(5))
-            claws.hatchShoot();
             
         y = -driveBox.getRawAxis(left_y_axis);
         x = driveBox.getRawAxis(right_x_axis);
@@ -119,60 +115,21 @@ public class Robot extends TimedRobot implements Robot_Framework {
 
     @Override
     public void testInit() {
-
+        
     }
 
     @Override
     public void testPeriodic() {
-        // if (driveBox.getRawButton(left_bumper)) {
-        // fLeft.set(0);
-        // mLeft.set(0);
-        // mLeft.set(0);
-        // if (driveBox.getRawButton(x_button)) {
-        // fRight.set(.5);
-        // mRight.set(0);
-        // bRight.set(0);
-        // } else if (driveBox.getRawButton(y_button)) {
-        // fRight.set(0);
-        // mRight.set(.5);
-        // bRight.set(0);
-        // } else if (driveBox.getRawButton(b_button)) {
-        // fRight.set(0);
-        // mRight.set(0);
-        // bRight.set(.5);
-        // } else {
-        // fRight.set(0);
-        // mRight.set(0);
-        // bRight.set(0);
-        // }
-        // } else {
-        // fRight.set(0);
-        // mRight.set(0);
-        // bRight.set(0);
-        // if (driveBox.getRawButton(x_button)) {
-        // fLeft.set(.5);
-        // mLeft.set(0);
-        // bLeft.set(0);
-        // } else if (driveBox.getRawButton(y_button)) {
-        // fLeft.set(0);
-        // mLeft.set(.5);
-        // bLeft.set(0);
-        // } else if (driveBox.getRawButton(b_button)) {
-        // fLeft.set(0);
-        // mLeft.set(0);
-        // bLeft.set(.5);
-        // } else {
-        // fLeft.set(0);
-        // mLeft.set(0);
-        // bLeft.set(0);
-        // }
-        // }
+        if(driveBox.getRawButton(left_bumper))
+            claws.hatchRelease();
+        else if(driveBox.getRawButton(right_bumper))
+            claws.hatchGrab();
+        System.out.println(leftClaw.getSensorCollection().getPulseWidthPosition());
     }
 
     public double skim(double v) {
         if (v > 1.0)
-            return -((v - 1.0) * gain_skim);
-
+            return -((v - 1.0) * gain_skim);        
         else if (v < -1.0)
             return -((v + 1.0) * gain_skim);
 

@@ -9,28 +9,33 @@ import edu.wpi.first.wpilibj.DriverStation.Alliance;
 public class NetworkTables implements Robot_Framework {
 
     public NetworkTables() {
-        SmartDashboard.putNumber("p", 0.012);
-		SmartDashboard.putNumber("i", 0.00);
-        SmartDashboard.putNumber("d", 0.00);
+        SmartDashboard.putNumber("p", 9.00); //starting PID values
+		SmartDashboard.putNumber("i", 0.008); 
+        SmartDashboard.putNumber("d", 90.0);
         
         SmartDashboard.putNumber("gyro", 0.00);
         SmartDashboard.putBoolean("gyroReset", false);
         
-        SmartDashboard.putNumber("lEnc", 0);
+		SmartDashboard.putNumber("lEnc", 0);
+		SmartDashboard.putBoolean("lEncReset", false);
 		SmartDashboard.putNumber("rEnc", 0);
+		SmartDashboard.putBoolean("rEncReset", false);
 		SmartDashboard.putNumber("intakeEnc", 0);
-        SmartDashboard.putNumber("rotationEnc", 0);
+		SmartDashboard.putBoolean("intakeEncReset", false);
+		SmartDashboard.putNumber("rotationEnc", 0);
+		SmartDashboard.putBoolean("rotationEncReset", false);
         SmartDashboard.putNumber("elevatorEnc", 0);
-        SmartDashboard.putBoolean("encReset", false);
+        SmartDashboard.putBoolean("elevatorEncReset", false);
         
-        SmartDashboard.putNumber("flDrive", 0);
-		SmartDashboard.putNumber("frDrive", 0);
-		SmartDashboard.putNumber("blDrive", 0);
-		SmartDashboard.putNumber("brDrive", 0);
-		SmartDashboard.putNumber("intake", 0);
+        SmartDashboard.putNumber("lDrive", 0);
+		SmartDashboard.putNumber("rDrive", 0);
+		SmartDashboard.putNumber("leftClawIntake", 0);
+		SmartDashboard.putNumber("rightClawIntake", 0);
+		SmartDashboard.putNumber("leftBallIntake", 0);
+		SmartDashboard.putNumber("rightBallIntake", 0);
 		SmartDashboard.putNumber("intakerotate", 0);
 		SmartDashboard.putNumber("elevator", 0);
-        SmartDashboard.putNumber("climber", 0);
+        // SmartDashboard.putNumber("climber", 0);
         
         SmartDashboard.putNumber("timer", 135);
         SmartDashboard.putBoolean("inauto", false);
@@ -41,7 +46,7 @@ public class NetworkTables implements Robot_Framework {
 		SmartDashboard.putNumber("intakedraw", 0);
 		SmartDashboard.putNumber("intakerotatedraw", 0);
 		SmartDashboard.putNumber("elevatordraw", 0);
-        SmartDashboard.putNumber("climberdraw", 0);
+        // SmartDashboard.putNumber("climberdraw", 0);
         
         SmartDashboard.putNumber("velocity", 0);
 		SmartDashboard.putNumber("acceleration", 0);
@@ -49,7 +54,10 @@ public class NetworkTables implements Robot_Framework {
         
         SmartDashboard.putBoolean("isred", false);
 
-        SmartDashboard.putNumber("automode", 0);
+		SmartDashboard.putNumber("automode", 0);
+		
+		SmartDashboard.putBoolean("jetsonConnected", false);
+		SmartDashboard.putString("consoleOutput", "");
     }
 
     public void update() {
@@ -70,48 +78,48 @@ public class NetworkTables implements Robot_Framework {
 		/**
 		 * This checks if the encoder reset button was pressed, and reset encoders if so.
 		 */
-		if(SmartDashboard.getBoolean("encReset", false)) {
-			leftDriveEnc.reset();
-			rightDriveEnc.reset();
-			iRotateEnc.reset();
-            elevEnc.reset();
-            leftClawEnc.reset();
-            rightClawEnc.reset();
-            climbEnc.reset();
-			SmartDashboard.putBoolean("encReset", false);
+		if(SmartDashboard.getBoolean("lEncReset", false)) {
+			fLeft.getSensorCollection().setPulseWidthPosition(0, kTimeoutMs);
+			SmartDashboard.putBoolean("lEncReset", false);
+		}
+		if(SmartDashboard.getBoolean("rEncReset", false)) {
+			fRight.getSensorCollection().setPulseWidthPosition(0, kTimeoutMs);
+			SmartDashboard.putBoolean("rEncReset", false);
+		}
+		if(SmartDashboard.getBoolean("intakeEncReset", false)) {
+			leftClaw.getSensorCollection().setPulseWidthPosition(0, kTimeoutMs);
+			SmartDashboard.putBoolean("intakeEncReset", false);
+		}
+		if(SmartDashboard.getBoolean("rotationEncReset", false)) {
+			iRotate.getSensorCollection().setPulseWidthPosition(0, kTimeoutMs);
+			SmartDashboard.putBoolean("rotationEncReset", false);
+		}
+		if(SmartDashboard.getBoolean("elevatorEncReset", false)) {
+			leftElev.getSensorCollection().setPulseWidthPosition(0, kTimeoutMs);
+			SmartDashboard.putBoolean("elevatorEncReset", false);
 		}
 
 		/**
 		 * This sends the current distance (converted from inches to feet) that the encoders have turned.
 		 */
-		SmartDashboard.putNumber("lEnc", leftDriveEnc.getDistance() / 12);
-		SmartDashboard.putNumber("rEnc", rightDriveEnc.getDistance() / 12);
-		SmartDashboard.putNumber("rotationEnc", iRotateEnc.getDistance() / 12);
-        SmartDashboard.putNumber("elevatorEnc", elevEnc.getDistance() / 12);
-        SmartDashboard.putNumber("intakeEnc", leftClawEnc.getDistance() / 12);
-		SmartDashboard.putNumber("intakeEnc2", rightClawEnc.getDistance() / 12);
-        SmartDashboard.putNumber("climbEnc", climbEnc.getDistance() / 12);
+		// SmartDashboard.putNumber("lEnc", fLeft.getSensorCollection().getPulseWidthPosition());
+		// SmartDashboard.putNumber("rEnc", fRight.getSensorCollection().getPulseWidthPosition());
+		SmartDashboard.putNumber("intakeEnc", leftClaw.getSensorCollection().getPulseWidthPosition());
+        // SmartDashboard.putNumber("rotationEnc", iRotate.getSensorCollection().getPulseWidthPosition());
+        // SmartDashboard.putNumber("elevatorEnc", leftElev.getSensorCollection().getPulseWidthPosition());
 
         /**
 		 * Motor values are sent to the dashboard only one of each type is sent for the simplicity
 		 * of the dashboard.
 		 */
-        SmartDashboard.putNumber("flDrive", fLeft.get());
-        SmartDashboard.putNumber("mlDrive", mLeft.get());
-        SmartDashboard.putNumber("blDrive", bLeft.get());
-        SmartDashboard.putNumber("frDrive", fRight.get());
-        SmartDashboard.putNumber("mrDrive", mRight.get());
-        SmartDashboard.putNumber("brDrive", bRight.get());
-
-		SmartDashboard.putNumber("lClaw", leftClaw.get());
-		SmartDashboard.putNumber("rClaw", rightClaw.get());
-		SmartDashboard.putNumber("lElev", leftElev.get());
-        SmartDashboard.putNumber("rElev", rightElev.get());
-        SmartDashboard.putNumber("iRotate", iRotate.get());
-        SmartDashboard.putNumber("lIntake", leftIntake.get());
-        SmartDashboard.putNumber("rIntake", rightIntake.get());
-        SmartDashboard.putNumber("lClimb", leftClimb.get());
-        SmartDashboard.putNumber("rClimb", rightClimb.get());
+        SmartDashboard.putNumber("lDrive", fLeft.get());
+		SmartDashboard.putNumber("rDrive", fRight.get());
+		SmartDashboard.putNumber("leftClawIntake", leftClaw.get());
+		SmartDashboard.putNumber("rightClawIntake", rightClaw.get());
+		SmartDashboard.putNumber("leftBallIntake", leftIntake.get());
+		SmartDashboard.putNumber("rightBallIntake", rightIntake.get());
+		SmartDashboard.putNumber("intakerotate", iRotate.get());
+		SmartDashboard.putNumber("elevator", leftElev.get());
 
 		/**
 		 * The current match time and auto status are sent to the dashboard for the countdown timer.
@@ -122,16 +130,16 @@ public class NetworkTables implements Robot_Framework {
 		/**
 		 * The current voltage and current of each motor is sent to the dashboard continuously.
 		 */
-		SmartDashboard.putNumber("voltage", RobotController.getBatteryVoltage());
-		SmartDashboard.putNumber("totaldraw", PowerJNI.getVinCurrent());
-        SmartDashboard.putNumber("drivedraw", fLeft.getOutputCurrent() + mLeft.getOutputCurrent() 
-                                            + bLeft.getOutputCurrent() + fRight.getOutputCurrent() 
-                                            + mRight.getOutputCurrent() + bRight.getOutputCurrent());
-        SmartDashboard.putNumber("clawdraw", leftClaw.getOutputCurrent() + rightClaw.getOutputCurrent());
-        SmartDashboard.putNumber("intakedraw", leftIntake.getOutputCurrent() + rightIntake.getOutputCurrent());
-		SmartDashboard.putNumber("intakerotatedraw", iRotate.getOutputCurrent());
-		SmartDashboard.putNumber("elevatordraw", leftElev.getOutputCurrent() + rightElev.getOutputCurrent());
-		SmartDashboard.putNumber("climberdraw", leftClimb.getOutputCurrent() + rightClimb.getOutputCurrent());
+		// SmartDashboard.putNumber("voltage", RobotController.getBatteryVoltage());
+		// SmartDashboard.putNumber("totaldraw", PowerJNI.getVinCurrent());
+        // SmartDashboard.putNumber("drivedraw", fLeft.getOutputCurrent() + mLeft.getOutputCurrent() 
+        //                                     + bLeft.getOutputCurrent() + fRight.getOutputCurrent() 
+        //                                     + mRight.getOutputCurrent() + bRight.getOutputCurrent());
+		// SmartDashboard.putNumber("clawdraw", leftClaw.getOutputCurrent() + rightClaw.getOutputCurrent()
+		// 									+ leftIntake.getOutputCurrent() + rightIntake.getOutputCurrent());
+		// SmartDashboard.putNumber("intakerotatedraw", iRotate.getOutputCurrent());
+		// SmartDashboard.putNumber("elevatordraw", leftElev.getOutputCurrent() + rightElev.getOutputCurrent());
+		// SmartDashboard.putNumber("climberdraw", leftClimb.getOutputCurrent() + rightClimb.getOutputCurrent());
 
 		/**
 		 * These bonus data pieces are also continuously updated on the smart dashboard.

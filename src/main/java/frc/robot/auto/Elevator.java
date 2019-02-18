@@ -6,16 +6,13 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.auto;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
+import frc.robot.constants.Robot_Framework;
+
 /**
  * Add your docs here.
  */
-public class Elevator {
-
-    private WPI_TalonSRX e1 = new WPI_TalonSRX(6);
-    private WPI_TalonSRX e2 = new WPI_TalonSRX(7);
-    private WPI_TalonSRX e3 = new WPI_TalonSRX(8);
-    private WPI_TalonSRX e4 = new WPI_TalonSRX(9);
+public class Elevator implements Robot_Framework{
 
     int height1=42,height2=42,height3=42, storageHeight=42, groundHeight=42;
 
