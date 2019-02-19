@@ -55,6 +55,7 @@ public class NetworkTables implements Robot_Framework {
         SmartDashboard.putBoolean("isred", false);
 
 		SmartDashboard.putNumber("automode", 0);
+		SmartDashboard.putBoolean("pants", false);
 		
 		SmartDashboard.putBoolean("jetsonConnected", false);
 		SmartDashboard.putString("consoleOutput", "");
@@ -168,6 +169,10 @@ public class NetworkTables implements Robot_Framework {
 
     public int getAutoMode() {
         return (int)SmartDashboard.getNumber("automode", 0);
-    }
+	}
+	
+	public boolean getPants() {
+		return SmartDashboard.getBoolean("pants", false);
+	}
 
 }

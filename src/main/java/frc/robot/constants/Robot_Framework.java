@@ -1,6 +1,7 @@
 package frc.robot.constants;
 
 import frc.robot.auto.*;
+import frc.robot.teleop.*;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.*;
@@ -35,7 +36,7 @@ public interface Robot_Framework extends Drive_Constants, Control_Constants, ID_
     SpeedControllerGroup left = new SpeedControllerGroup(fLeft, mLeft, bLeft);
     SpeedControllerGroup right = new SpeedControllerGroup(fRight, mRight, bRight);
 
-    DifferentialDrive drive = new DifferentialDrive(left, right);
+    DifferentialDrive tank = new DifferentialDrive(left, right);
 
     XboxController driveBox = new XboxController(drive_controller);
     XboxController intakeBox = new XboxController(intake_controller);
@@ -43,12 +44,14 @@ public interface Robot_Framework extends Drive_Constants, Control_Constants, ID_
     DoubleSolenoid gearSole = new DoubleSolenoid(0, 1);
     DoubleSolenoid climbSole1 = new DoubleSolenoid(2, 3);
     DoubleSolenoid climbSole2 = new DoubleSolenoid(4, 5);
-    // DoubleSolenoid wingSole1 = new DoubleSolenoid(6, 7);
-    // DoubleSolenoid wingSole2 = new DoubleSolenoid(8, 9);
+    DoubleSolenoid wingSole1 = new DoubleSolenoid(6, 7);
+    DoubleSolenoid wingSole2 = new DoubleSolenoid(8, 9);
 
     AHRS gyro = new AHRS(I2C.Port.kMXP);
 
     EchoServer jetson = new EchoServer();
     NetworkTables dash = new NetworkTables();
-    Intake claws = new Intake();
+
+    Claws claws = new Claws();
+    Drive drive = new Drive();
 }

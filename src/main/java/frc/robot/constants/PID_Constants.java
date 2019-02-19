@@ -3,6 +3,13 @@ package frc.robot.constants;
 public interface PID_Constants {
     double degreesToTicks = 4096./360;
     int kTimeoutMs = 10;
+    int ticks_per_revolution = 4096;
+
+    //Drive Control
+
+    double drive_p = 0.0;
+    double drive_i = 0.0;
+    double drive_d = 0.0;
 
     //Claw Control
     double left_claw_open = -219;

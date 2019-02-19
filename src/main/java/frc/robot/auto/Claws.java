@@ -16,7 +16,7 @@ import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 /**
  * Add your docs here.
  */
-public class Intake implements Robot_Framework {
+public class Claws implements Robot_Framework {
 
     private static final int kPIDLoopIdx = 0;
     private static final int kSlotIdx = 0;
@@ -36,7 +36,7 @@ public class Intake implements Robot_Framework {
         rightClaw.set(ControlMode.MotionMagic, right_claw_ball);
     }
 
-    public Intake(){
+    public Claws(){
         leftClaw.configFactoryDefault();
         rightClaw.configFactoryDefault();
 
