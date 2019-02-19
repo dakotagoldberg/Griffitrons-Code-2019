@@ -51,8 +51,8 @@ public class Elevator implements Robot_Framework {
         leftElev.configFactoryDefault();
         rightElev.configFactoryDefault();
 
-        leftElev.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, kPIDLoopIdx, kTimeoutMs );
-        rightElev.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, kPIDLoopIdx, kTimeoutMs );
+        leftElev.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, kPIDLoopIdx, kTimeoutMs);
+        rightElev.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, kPIDLoopIdx, kTimeoutMs);
 
         leftElev.setSensorPhase(false);
         rightElev.setSensorPhase(false);

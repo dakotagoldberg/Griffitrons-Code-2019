@@ -135,7 +135,6 @@ public class Robot extends TimedRobot implements Robot_Framework {
             return -((v - 1.0) * gain_skim);        
         else if (v < -1.0)
             return -((v + 1.0) * gain_skim);
-
         return 0;
     }
 
