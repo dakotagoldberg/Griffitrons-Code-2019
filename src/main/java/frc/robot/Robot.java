@@ -50,6 +50,19 @@ public class Robot extends TimedRobot implements Robot_Framework {
             gearSole.set(DoubleSolenoid.Value.kOff);
             gearSole.set(DoubleSolenoid.Value.kOff);
         }
+
+        if (driveBox.getTriggerAxis(Hand.kLeft) >= 0.02){
+            leftIntake.set(-driveBox.getTriggerAxis(Hand.kLeft));
+            rightIntake.set(-driveBox.getTriggerAxis(Hand.kLeft));
+        } else if (driveBox.getTriggerAxis(Hand.kRight) >= 0.02){
+            leftIntake.set(driveBox.getTriggerAxis(Hand.kRight));
+            rightIntake.set(driveBox.getTriggerAxis(Hand.kRight));
+        } else {
+            leftIntake.set(0);
+            rightIntake.set(0);
+        }
+
+        
     }
 
     @Override

@@ -2,8 +2,8 @@ package frc.robot.auto;
 
 import frc.robot.constants.Robot_Framework;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.hal.PowerJNI;
-import edu.wpi.first.wpilibj.RobotController;
+// import edu.wpi.first.hal.PowerJNI;
+// import edu.wpi.first.wpilibj.RobotController;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 
 public class NetworkTables implements Robot_Framework {

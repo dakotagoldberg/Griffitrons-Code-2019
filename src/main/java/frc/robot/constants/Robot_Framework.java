@@ -44,8 +44,8 @@ public interface Robot_Framework extends Drive_Constants, Control_Constants, ID_
     DoubleSolenoid gearSole = new DoubleSolenoid(0, 1);
     DoubleSolenoid climbSole1 = new DoubleSolenoid(2, 3);
     DoubleSolenoid climbSole2 = new DoubleSolenoid(4, 5);
-    DoubleSolenoid wingSole1 = new DoubleSolenoid(6, 7);
-    DoubleSolenoid wingSole2 = new DoubleSolenoid(8, 9);
+    // DoubleSolenoid wingSole1 = new DoubleSolenoid(6, 7);
+    // DoubleSolenoid wingSole2 = new DoubleSolenoid(8, 9);
 
     AHRS gyro = new AHRS(I2C.Port.kMXP);
 
