@@ -41,14 +41,14 @@ public class Robot extends TimedRobot implements Robot_Framework {
         drive.executeTank(); //Uses both sticks on driveBox        
 
         if (driveBox.getRawButton(left_bumper)) {
-            gearSole.set(DoubleSolenoid.Value.kReverse);
-            gearSole.set(DoubleSolenoid.Value.kReverse);
+            gearSole1.set(DoubleSolenoid.Value.kReverse);
+            gearSole2.set(DoubleSolenoid.Value.kReverse);
         } else if (driveBox.getRawButton(right_bumper)) {
-            gearSole.set(DoubleSolenoid.Value.kForward);
-            gearSole.set(DoubleSolenoid.Value.kForward);
+            gearSole1.set(DoubleSolenoid.Value.kForward);
+            gearSole2.set(DoubleSolenoid.Value.kForward);
         } else {
-            gearSole.set(DoubleSolenoid.Value.kOff);
-            gearSole.set(DoubleSolenoid.Value.kOff);
+            gearSole1.set(DoubleSolenoid.Value.kOff);
+            gearSole2.set(DoubleSolenoid.Value.kOff);
         }
 
         if (driveBox.getTriggerAxis(Hand.kLeft) >= 0.02){

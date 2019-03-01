@@ -41,9 +41,10 @@ public interface Robot_Framework extends Drive_Constants, Control_Constants, ID_
     XboxController driveBox = new XboxController(drive_controller);
     XboxController intakeBox = new XboxController(intake_controller);
 
-    DoubleSolenoid gearSole = new DoubleSolenoid(0, 1);
-    DoubleSolenoid climbSole1 = new DoubleSolenoid(2, 3);
-    DoubleSolenoid climbSole2 = new DoubleSolenoid(4, 5);
+    DoubleSolenoid gearSole1 = new DoubleSolenoid(0, 2);
+    DoubleSolenoid gearSole2 = new DoubleSolenoid(1, 3);
+    // DoubleSolenoid climbSole1 = new DoubleSolenoid(2, 3);
+    // DoubleSolenoid climbSole2 = new DoubleSolenoid(4, 5);
     // DoubleSolenoid wingSole1 = new DoubleSolenoid(6, 7);
     // DoubleSolenoid wingSole2 = new DoubleSolenoid(8, 9);
 
