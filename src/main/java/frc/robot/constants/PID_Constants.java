@@ -45,18 +45,22 @@ public interface PID_Constants {
     double left_elev_hatch_top = 314; 
     double left_elev_hatch_middle = -219;
     double left_elev_hatch_bottom = 82;
+    double left_elev_hatch_ground = 0;
 
     double left_elev_ball_top = 3775;
     double left_elev_ball_middle = 4456;
     double left_elev_ball_bottom = 4161;
+    double left_elev_ball_ground = 0;
 
     double right_elev_hatch_top = 314; 
     double right_elev_hatch_middle = -219;
     double right_elev_hatch_bottom = 82;
+    double right_elev_hatch_ground = 0;
 
     double right_elev_ball_top = 3775;
     double right_elev_ball_middle = 4456;
     double right_elev_ball_bottom = 4161;
+    double right_elev_ball_ground = 0;
 
     double elev_p = 4.0;
     double elev_i = 0.008;

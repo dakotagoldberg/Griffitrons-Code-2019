@@ -22,9 +22,12 @@ public class Elevator implements Robot_Framework {
 
     public void placeHatch(int level) {
         if(level == 0) {
+            leftElev.set(ControlMode.MotionMagic, left_elev_hatch_ground);
+            rightElev.set(ControlMode.MotionMagic, right_elev_hatch_ground);
+        } else if(level == 1) {
             leftElev.set(ControlMode.MotionMagic, left_elev_hatch_bottom);
             rightElev.set(ControlMode.MotionMagic, right_elev_hatch_bottom);
-        } else if(level == 1) {
+        } else if(level == 2) {
             leftElev.set(ControlMode.MotionMagic, left_elev_hatch_middle);
             rightElev.set(ControlMode.MotionMagic, right_elev_hatch_middle);
         } else {
@@ -35,9 +38,12 @@ public class Elevator implements Robot_Framework {
 
     public void placeBall(int level) {
         if(level == 0) {
+            leftElev.set(ControlMode.MotionMagic, left_elev_ball_ground);
+            rightElev.set(ControlMode.MotionMagic, right_elev_ball_ground);
+        } else if(level == 1) {
             leftElev.set(ControlMode.MotionMagic, left_elev_ball_bottom);
             rightElev.set(ControlMode.MotionMagic, right_elev_ball_bottom);
-        } else if(level == 1) {
+        } else if(level == 2) {
             leftElev.set(ControlMode.MotionMagic, left_elev_ball_middle);
             rightElev.set(ControlMode.MotionMagic, right_elev_ball_middle);
         } else {

@@ -55,4 +55,6 @@ public interface Robot_Framework extends Drive_Constants, Control_Constants, ID_
 
     Claws claws = new Claws();
     Drive drive = new Drive();
+    IntakeRotate intakeRotate = new IntakeRotate();
+    Elevator elevator = new Elevator();
 }
